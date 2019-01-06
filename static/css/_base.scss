@@ -18,7 +18,7 @@ $code-highlight: #EFF0F1;
 }
 body, html, .mdl-layout, .mdl-layout__content, .page-content {
   // height: auto;
-  color: #424242;
+  color: $text-color;
 }
 .mdl-grid {
   p {
