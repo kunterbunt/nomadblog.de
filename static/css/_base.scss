@@ -1,0 +1,78 @@
+$phone:   "only screen and (max-width: 529px)";
+$tablet:  "only screen and (min-width: 530px) and (max-width: 1024px)";
+$desktop: "only screen and (min-width: 1025px)";
+
+$accent-color: #FF5722;
+$text-color: #090909;
+$text-color--weak: #505050;
+$almost-white: #FAFAFA;
+$darkgray: #424242;
+$gray: #8c8c8c;
+$lightgray: #F5F5F5;
+$code-highlight: #EFF0F1;
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+body, html, .mdl-layout, .mdl-layout__content, .page-content {
+  // height: auto;
+  color: #424242;
+}
+.mdl-grid {
+  p {
+    font-size: 120%;
+  }
+}
+p, span, h1, h2, h3, h4, figcaption {
+  font-family: "Roboto", "Open Sans", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+pre > code {
+  text-color: $text-color;
+}
+p > code, li > code {
+  background-color: $code-highlight;
+  padding: 2px 4px;
+  font-size: 90%;
+}
+.text--centered {
+  text-align: center;
+}
+footer {
+  .mdl-button {
+    span {
+      color: black;
+    }
+    i {
+      line-height: 36px;
+      color: black;
+    }
+  }
+}
+.mdl-layout__header {
+  background: white;
+  color: rgba(0, 0, 0, 0.87);
+  a {
+    color: rgba(0, 0, 0, 0.87);
+    text-transform: capitalize;
+    font-family: "Helvetica","Arial",sans-serif;
+  }
+  .mdl-layout__header-row {
+    padding-left: 0;
+  }
+}
+.icon {
+  height: 24px;
+  width: 24px;
+}
+.text-align--center {
+  text-align: center;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}

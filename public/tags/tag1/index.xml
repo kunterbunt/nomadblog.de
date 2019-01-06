@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Syntax Sugar</title>
+    <link>http://syntaxsugar.de/tags/tag1/index.xml</link>
+    <description>Recent content on Syntax Sugar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://syntaxsugar.de/tags/tag1/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Some really nice title that&#39;s also really long</title>
+      <link>http://syntaxsugar.de/posts/test/</link>
+      <pubDate>Sun, 19 Mar 2017 14:01:30 +0100</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/test/</guid>
+      <description>&lt;p&gt;$$ \sum (a+b) $$&lt;/p&gt;
+
+&lt;p&gt;inline stuff \( \sum_{i=1}^n n^2 \) bla&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre&gt;&lt;code class=&#34;language-c++&#34; data-lang=&#34;c++&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;**&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;argv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cout&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;quot;Hello Wolrd&amp;quot;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;std&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;endl&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Inline &lt;code&gt;code&lt;/code&gt; is also cool&lt;/p&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur lobortis vitae magna non lacinia. Quisque vestibulum bibendum purus, ut iaculis justo ultricies sit amet. Nulla nec ornare dui. Suspendisse potenti. Vestibulum sed mauris lacinia, suscipit arcu vitae, vulputate sapien. Aenean accumsan ante diam, et maximus quam porttitor non. Etiam congue turpis ex, id porta magna gravida id. Maecenas pretium urna vitae nisl aliquet fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin quam erat, placerat non ligula eget, pellentesque gravida neque.&lt;/p&gt;
+
+&lt;p&gt;Donec suscipit leo ut tempus semper. Suspendisse potenti. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris rhoncus pharetra elit, eu venenatis libero tempor non. Donec imperdiet lacus et magna pellentesque molestie at ac tellus. Mauris finibus magna at leo maximus, sit amet varius risus ultricies. Quisque a ultricies erat. Vestibulum eleifend, odio nec ornare tincidunt, erat turpis sollicitudin dui, ut hendrerit neque nisl sed dolor. Donec ornare ipsum turpis, nec vehicula mi dapibus et. Quisque vel posuere ipsum.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse non libero ac leo placerat varius. Etiam convallis molestie nunc, at pulvinar tellus blandit vel. Phasellus aliquam dolor sit amet sem volutpat, sit amet vestibulum ligula pulvinar. Cras tristique pretium nisl, vel porttitor erat posuere eget. In bibendum orci vel vulputate aliquam. Nunc vulputate felis quis laoreet luctus. Nunc sodales faucibus augue. Cras quam est, malesuada ac orci non, mollis vestibulum sapien.&lt;/p&gt;
+
+&lt;p&gt;Cras eleifend condimentum sagittis. Praesent et orci id ante pretium rutrum nec id ipsum. Nullam et felis suscipit, sodales leo at, molestie sapien. Vivamus semper erat vitae mi euismod, vel pretium sapien interdum. Aliquam consequat pretium ullamcorper. In fringilla vestibulum lectus, eget convallis ex mollis eu. In et augue sit amet diam finibus mollis. Maecenas tristique lectus quam, nec bibendum ligula vulputate quis. Etiam blandit ante id elit efficitur, porta dapibus mi pharetra. Vestibulum aliquam vehicula tincidunt. Proin sagittis vehicula ante.&lt;/p&gt;
+
+&lt;p&gt;Sed tincidunt non ante laoreet posuere. Phasellus porttitor felis sed posuere ultrices. Aliquam auctor ipsum at tortor mattis, non malesuada nunc aliquam. Curabitur feugiat leo in velit tincidunt vulputate. Duis sit amet neque sodales, ultricies purus bibendum, fermentum erat. Proin mollis mi at diam elementum pharetra. Nam vestibulum ligula orci, id suscipit lectus egestas vitae. Aliquam venenatis augue nec nulla lobortis tempus. Nulla venenatis, mi maximus cursus semper, nunc nibh accumsan justo, ac auctor nulla augue et massa. Proin sollicitudin bibendum mollis. Quisque et dui ac nulla pellentesque imperdiet a sit amet nisi. Sed arcu dolor, gravida non justo at, auctor maximus ipsum. Nullam ex augue, pulvinar commodo mi id, rhoncus facilisis nisl.&lt;/p&gt;
+
+&lt;p&gt;Morbi nec odio sit amet lorem tempus rhoncus. Suspendisse potenti. Aenean vitae dui varius, euismod mauris sit amet, porttitor urna. Nam at enim congue, congue neque a, lacinia ante. Sed auctor mollis dignissim. In at sem bibendum, interdum dui non, mattis libero. Integer neque diam, mollis eget turpis vitae, cursus laoreet arcu.&lt;/p&gt;
+
+&lt;p&gt;Vivamus nulla elit, placerat ut odio a, faucibus sollicitudin elit. Proin gravida lorem nec dolor ornare elementum scelerisque sit amet purus. Quisque pellentesque felis eget odio gravida, imperdiet imperdiet augue scelerisque. Nam id enim vitae nisl placerat dictum. Aenean rhoncus mauris vitae euismod imperdiet. Sed egestas dictum elit sed elementum. Morbi egestas erat nisl, a mollis arcu tempus in. Nunc lectus ligula, luctus id maximus vitae, hendrerit vulputate neque. Morbi mollis justo vitae pellentesque imperdiet. Phasellus aliquet vehicula nunc eget mollis. Fusce vel sagittis neque. Nam sollicitudin, ipsum eu dictum semper, velit quam volutpat nibh, eget laoreet risus massa eu turpis. Donec nisi lectus, pulvinar sit amet congue eget, mattis nec magna. Etiam sodales nulla diam, sit amet scelerisque nibh iaculis in. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec non molestie orci.&lt;/p&gt;
+
+&lt;p&gt;Sed lacinia dictum tellus. Maecenas in ante nec purus volutpat volutpat vel id nisi. In eu euismod eros, eget vulputate sem. Vivamus pharetra nec dui ultricies auctor. Mauris tellus lorem, molestie vel vulputate nec, dictum in justo. Donec ornare dui a ante porta, eget rutrum ligula interdum. Cras gravida ornare nisi, in gravida erat mollis eu. Sed sed lectus vel nibh venenatis dapibus eget id urna.&lt;/p&gt;
+
+&lt;p&gt;Pellentesque non lorem vel ipsum fermentum elementum quis vestibulum enim. Praesent nec luctus turpis. Aenean at efficitur tellus. Mauris finibus convallis diam vulputate volutpat. Quisque quam mauris, finibus in volutpat et, feugiat ac arcu. Nam eget orci eu purus imperdiet scelerisque vel quis nunc. In quis porttitor nulla. In ornare vitae eros ac ultricies. Vivamus facilisis id metus eu varius. Nullam iaculis finibus mollis. Maecenas feugiat neque at condimentum tristique. Fusce tincidunt velit urna, ut facilisis eros condimentum in.&lt;/p&gt;
+
+&lt;p&gt;Pellentesque dignissim, mi interdum imperdiet ullamcorper, eros justo hendrerit est, in lobortis dolor ipsum pharetra diam. Vestibulum feugiat suscipit diam ut condimentum. Ut commodo eros ac nunc laoreet dictum. Duis pharetra tortor et augue gravida imperdiet. Sed vitae tellus sollicitudin, suscipit turpis vitae, convallis nisi. Sed dictum turpis sit amet dolor lacinia efficitur. Nam quis tempus quam, vitae posuere lorem. Donec neque ipsum, pulvinar et finibus sed, commodo ut turpis. Aenean luctus quam eu felis porttitor mollis. Praesent vel pulvinar dolor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hac habitasse platea dictumst. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam semper massa in risus cursus maximus. Phasellus vitae egestas dui.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

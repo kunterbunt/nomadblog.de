@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computer Networks on Syntax Sugar</title>
+    <link>http://syntaxsugar.de/tags/computer-networks/</link>
+    <description>Recent content in Computer Networks on Syntax Sugar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Oct 2017 10:51:10 +0200</lastBuildDate>
+    
+	<atom:link href="http://syntaxsugar.de/tags/computer-networks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OMNeT&#43;&#43; and INET Simulator Setup</title>
+      <link>http://syntaxsugar.de/posts/omnet-setup/</link>
+      <pubDate>Wed, 11 Oct 2017 10:51:10 +0200</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/omnet-setup/</guid>
+      <description>I use the popular, modular OMNeT++ simulator for network simulation. The INET Framework adds lots of useful wired, wireless and mobile communication protocols and entities to the simulator.
+It turns out many people have problems compiling the two. So I&amp;rsquo;d like to give a quick introduction into how I got them working.
+I use OMNeT++ 5.1.1 together with INET 3.5. Both have newer versions, but another framework I use - simuLTE - requires these versions.</description>
+    </item>
+    
+    <item>
+      <title>Simulation evaluation in OMNeT&#43;&#43;</title>
+      <link>http://syntaxsugar.de/posts/omnetpp-sim-evaluation/</link>
+      <pubDate>Mon, 01 May 2017 16:57:42 +0200</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/omnetpp-sim-evaluation/</guid>
+      <description>OMNeT++ network simulator allows for extensive and modular simulation of network scenarios. When simulation concept, implementation, configuration and running are said and done, the evaluation is the next step. Some built-in functionalities of the IDE allow for an idea on how the network performed. This was cumbersone for me personally, and I prefer to evaluate the numerical scalar result values in MATLAB anyway.
+When you run a large number of simulations, then you don&amp;rsquo;t want to open each file in the IDE, select the relevant entries and export them to a .</description>
+    </item>
+    
+    <item>
+      <title>Implementing D2D mode selection in OMNeT&#43;&#43;/SIMUlte</title>
+      <link>http://syntaxsugar.de/posts/omnetpp-d2d-mode-selection/</link>
+      <pubDate>Mon, 01 May 2017 16:41:12 +0200</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/omnetpp-d2d-mode-selection/</guid>
+      <description>Device2Device (D2D) Mode Selection is the process of deciding whether a user device should communicate directly (D2D Mode) or via the eNodeB base station (Infrastructure Mode). A number of metrics can be taken into account for this decision, such as the interference generated that will affect other devices or the expected datarate of each mode. Once a researcher has come up with an idea, they will want to evaluate it. Using the OMNeT++ network simulator as a starting point, and adding the SIMUlte framework on top enables one to simulate LTE networks.</description>
+    </item>
+    
+    <item>
+      <title>Implementing an LTE resource scheduler in OMNeT&#43;&#43;/SIMUlte</title>
+      <link>http://syntaxsugar.de/posts/omnetpp-scheduler/</link>
+      <pubDate>Mon, 01 May 2017 15:59:19 +0200</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/omnetpp-scheduler/</guid>
+      <description>SIMUlte is an extension framework for the network simulator OMNeT++. It enables simulations of LTE telecommunications.
+In this context, resource scheduling is the problem of allocating transmission resources residing in the dimensions of time and of frequency band to user devices. A resource block can be depicted like this:
+There are a number of optimization targets we would like to meet:
+ system throughput: we want to push out as much data as possible fairness: we want all devices to be able to push out data power efficiency: we want to use as little power as possible  So in the end, resource scheduling boils down to a complex optimization problem.</description>
+    </item>
+    
+    <item>
+      <title>How to safely SSH into your own computer</title>
+      <link>http://syntaxsugar.de/posts/safe-ssh-to-own-computer/</link>
+      <pubDate>Thu, 30 Mar 2017 20:01:49 +0200</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/safe-ssh-to-own-computer/</guid>
+      <description>I came across a situation where I had to ssh into my personal computer from a remote server. Most of the time, you don&amp;rsquo;t want to do this. There&amp;rsquo;s botnets and other evil-doers out there that try to break into easily accessible machines, and a password-protected SSH connection is easily broken into.
+So don&amp;rsquo;t do this unless you really need to!
+Okay, so you really need to. What do we need to do?</description>
+    </item>
+    
+    <item>
+      <title>Lexicographical index calculation</title>
+      <link>http://syntaxsugar.de/posts/lexicographical-index/</link>
+      <pubDate>Tue, 28 Mar 2017 14:21:39 +0200</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/lexicographical-index/</guid>
+      <description>Building upon the idea of word frequency vectors, when implementing the idea in a language of your choice, you might encounter the problem of instantiating a container that is going to store the observed frequencies. In an efficient implementation you could instantiate such a container that holds the right number of items, which is \(\left| \sum_{language} \right| ^n\), e.g. for DNA the alphabet is \(\sum_{DNA}=\{A,C,T,G\}\). \(n\) is the word length for which you&amp;rsquo;re finding the frequency vector.</description>
+    </item>
+    
+    <item>
+      <title>Word frequency vectors and their uses</title>
+      <link>http://syntaxsugar.de/posts/word-frequency-vectors/</link>
+      <pubDate>Fri, 24 Mar 2017 18:45:50 +0100</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/word-frequency-vectors/</guid>
+      <description>During some work with a Bioinformatics group at the University of Göttingen, we would use word frequency vectors to determine evolutionary distances between DNA or Protein sequences.
+A DNA sequence, when saved digitally, is nothing more than a string of characters. Each one corresponds to one of the four possible nucleotides. You could call this DNA&amp;rsquo;s alphabet \(\sum_{DNA}=\{A,C,T,G\}\). A chain of these nucleotides makes up the structure of a DNA strand.</description>
+    </item>
+    
+  </channel>
+</rss>

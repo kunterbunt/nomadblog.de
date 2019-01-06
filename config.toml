@@ -1,0 +1,8 @@
+title = "Nomad Blog"
+languageCode = "en-us"
+baseurl = "http://nomadblog.de/"
+pluralizeListTitles = false
+PygmentsCodeFences = true
+pygmentsuseclasses = true
+[Taxonomies]
+tag = "tags"

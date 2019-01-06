@@ -1,0 +1,130 @@
+@import "base";
+@import "mixins";
+
+$teal: #1DE9B6;
+$title-height: 96px;
+$logo-height: 400px;
+$background-color: #D5CDC2;
+
+.mdl-layout__header {
+  background: white;
+  color: rgba(0, 0, 0, 0.87);
+  a {
+    color: rgba(0, 0, 0, 0.87);
+  }
+  .mdl-layout__header-row {
+    padding-left: 0;
+  }
+}
+
+img {
+  max-height: 70vh;
+  max-width: 100%;
+}
+.image {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.container--logo {
+  height: 400px;
+  max-height: 50%;
+  img {
+    height: 100%;
+  }
+  .mdl-layout-spacer {
+    @media #{$desktop} {
+      background-color: lightgray;
+    }
+  }
+}
+
+.container--content {
+  width: 100%;  
+  .logo {
+    background-size: cover;
+    height: $logo-height;
+    max-height: 50%;
+  }
+  .title {
+    &.accented {
+      background-color: $accent-color;
+    }
+    min-height: $title-height;
+    line-height: $title-height;
+    text-align: center;
+    margin: 0;
+  }
+  .content {
+    min-height: calc(100vh - 64px - 64px - 101px - 32px);
+  }
+  p {
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  .responsive {
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+  }
+  blockquote {
+    font-size: 100%;
+    background: #f9f9f9;
+    border-left: 10px solid $accent-color;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "“" "”" "‘" "’";
+    &:before {
+      color: #ccc;
+      content: open-quote;
+      font-size: 4em;
+      line-height: 0.1em;
+      margin-right: 0.25em;
+      vertical-align: -0.4em;
+    }
+    & p {
+      display: inline;
+    }
+  }
+}
+
+.articles-list {
+  list-style-type: none;
+  li {
+    @include gradient-left-right(darken(white, 5%), white);
+    @include transition(background 0.25s);
+    margin-bottom: 16px;
+    padding: 16px 16px 0 16px;
+    .article__title {
+      color: black;
+    }
+    .article__date {
+      color: $accent-color;
+      font-size: 85%;
+    }
+    .article__summary {
+
+    }
+    &:hover {
+      @include gradient-left-right(darken(white, 10%), white);
+      .mdl-list__item-avatar {
+        i {
+          color: $accent-color;
+        }
+      }
+    }
+    .mdl-list__item-avatar {
+      i {
+        height: 50%;
+        position: relative;
+        top: 20%;
+        left: 20%;
+        // @include transform(translateY(25%));
+      }
+    }
+  }
+}

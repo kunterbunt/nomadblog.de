@@ -1,0 +1,18 @@
+<div class="articles-container mdl-grid mdl-grid--no-spacing">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--6-col">
+      <i class="material-icons">&#xE5C5;</i>
+      <div class="vertical-line vertical-line--50px"></div>
+      {{ range first 7 .Data.Pages }}
+        {{ partial "post.html" . }}
+      {{ end }}
+      {{ if ge (len .Data.Pages) 8 }} <!-- if there are >=8 posts -->
+      <a href="/more" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+        SHOW ME MORE
+      </a>
+      {{ else }}
+      <i class="material-icons">arrow_drop_up</i>
+      {{ end }}
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>

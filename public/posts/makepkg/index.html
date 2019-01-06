@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+  <title>Syntax Sugar</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/imgs/icons/favicon.png">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="/css/article.css" type="text/css">
+  <link rel="stylesheet" href="/css/github.css" type="text/css">
+  
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <a href="#" onclick="history.go(-1)"><button class="mdl-button mdl-js-button"><i class="material-icons">arrow_back</i></button></a><a href=http://syntaxsugar.de/><span class="mdl-layout-title">Syntax Sugar</span></a><i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i><a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a><i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i><a class="mdl-cell--hide-phone"> Building an AUR package with invalid MD5Checksum</a>
+      </div>
+    </header>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <article class="container--content">
+          <div class="mdl-grid mdl-grid--no-spacing">
+            
+            <div class="mdl-cell mdl-cell--12-col">
+              
+              <h3 class="title text--centered accented">Building an AUR package with invalid MD5Checksum</h3>
+              
+            </div>
+          </div>
+          <div class="mdl-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="content mdl-cell mdl-cell--5-col">
+              <p>I had an annoying problem: for the simulator I use for research I needed a specific library, as the simulator uses it.<br />
+This specific library <code>osgearth</code> is available in the Arch Linux&rsquo;s AUR, but the package maintainer put a wrong <code>MD5 Checksum</code> into the <code>PKGBUILD</code>. Let&rsquo;s say we trust the maintainer and don&rsquo;t believe someone tinkered with the files. What do you do?</p>
+
+<p>Go to an arbitrary directory</p>
+
+<pre><code>cd ~/Download
+mkdir osgearth
+cd osgearth
+</code></pre>
+
+<p>Download the <code>Snapshot</code> from the AUR which should contain the <code>PKGBUILD</code>; extract it from the archive file.</p>
+
+<p>Execute <code>makepkg -g</code> which downloads the files and computes the <code>MD5 Checksums</code>. Copy the checksum, edit the <code>PKGBUILD</code> and put it in there.<br />
+Now <code>makepkg -sc</code>, where <code>-s</code> installs missing dependencies, and <code>-c</code> cleans up afterwards.<br />
+Install the compiled package with <code>pacman -U &lt;package&gt;</code>.</p>
+
+            </div>
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </article>
+        <footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">Contact</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="mailto:sebastian@syntaxsugar.de" title="Send me a mail!" target="_self" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">email</i></a></li>
+      <li><a href="https://github.com/kunterbunt" title="Github" target="_blank" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span><img class="icon" src="/imgs/icons/github.png"/></span></a></li>
+    </ul>
+  </div>
+    
+</footer>
+
+      </div>
+    </main>
+  </div>
+</body>
+
+

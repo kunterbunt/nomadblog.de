@@ -1,0 +1,65 @@
+<head>
+  <title>{{.Site.Title}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/imgs/favicon.jpg">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="/css/index.css" type="text/css">
+</head>
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <a href={{.Site.BaseURL}}><span class="mdl-layout-title">{{.Site.Title}}</span></a>
+      </div>
+    </header>
+    <main class="page-content">
+      <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="articles-header mdl-cell mdl-cell--12-col">
+          <h2 class="text-align--center">Latest Activity</h2>
+        </div>
+      </div>
+      <div class="articles-container mdl-grid mdl-grid--no-spacing">
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-cell mdl-cell--6-col">
+          <i class="material-icons">&#xE5C5;</i>
+          <div class="vertical-line vertical-line--50px"></div>
+          {{ range (where .Site.Pages "Section" "==" "posts") }}
+            <div class="article">
+              <a href="{{.Permalink}}" title="{{.Params.summary}}" target="_self">
+                <span class="article__date">{{.Date.Format "January 2"}}</span>
+                <div class="article__content">
+                  <div class="article__content--title-section">
+                    <!-- Hacky workaround to make parent link to post clickable. Nested link tricksery. -->
+                    <object><a href="{{ .Section | urlize }}" class="button button--top mdl-button mdl-js-button mdl-js-ripple-effect">{{.Section}}/</a></object>
+                  </div>
+                  <h4 class="article__content--title">{{.Title}}</h4>
+                  {{ if (isset .Params "summary") }}
+                  <p class="article__content--summary">{{.Params.summary}}</p>
+                  {{ end }}
+                  {{ if and (.GetParam "showLogo") (isset .Params "logo")}}
+                  <div class="article__content--image" style="background: url('{{.Params.logo}}');"></div>
+                  {{ end }}
+                  <div class="tags">
+                    {{ range .Params.tags }}
+                      <span><object><a class="button button--bottom mdl-button mdl-js-button mdl-js-ripple-effect" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></object></span>
+                    {{ end }}
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="vertical-line"></div>
+          {{ end }}
+          <a href="/" class="mdl-button mdl-js-button mdl-js-ripple-effect">
+            BACK
+          </a>
+        </div>
+        <div class="mdl-layout-spacer"></div>
+      </div>
+      {{partial "footer.html" .}}
+    </main>
+  </div>
+</body>

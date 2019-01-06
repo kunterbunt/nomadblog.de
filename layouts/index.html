@@ -1,0 +1,15 @@
+{{ partial "head-index.html" . }}
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    {{ partial "header.html" . }}
+    <main class="page-content">
+      <div class="mdl-grid mdl-grid--no-spacing">
+        <div class="articles-header mdl-cell mdl-cell--12-col">
+          <h2 class="text-align--center">Latest Posts</h2>
+        </div>
+      </div>
+      {{ partial "articles-list--first-seven.html" . }}      
+      {{partial "footer.html" .}}
+    </main>
+  </div>
+</body>

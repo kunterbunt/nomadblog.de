@@ -1,0 +1,12 @@
+<div class="articles-container mdl-grid mdl-grid--no-spacing">
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--6-col">
+      <i class="material-icons">&#xE5C5;</i>
+      <div class="vertical-line vertical-line--50px"></div>
+      {{ range .Data.Pages }}
+        {{ partial "post.html" . }}
+      {{ end }}      
+      <i class="material-icons">arrow_drop_up</i>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>

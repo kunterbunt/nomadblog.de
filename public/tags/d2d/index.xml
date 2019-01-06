@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>D2d on Syntax Sugar</title>
+    <link>http://syntaxsugar.de/tags/d2d/</link>
+    <description>Recent content in D2d on Syntax Sugar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 May 2017 16:41:12 +0200</lastBuildDate>
+    
+	<atom:link href="http://syntaxsugar.de/tags/d2d/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Implementing D2D mode selection in OMNeT&#43;&#43;/SIMUlte</title>
+      <link>http://syntaxsugar.de/posts/omnetpp-d2d-mode-selection/</link>
+      <pubDate>Mon, 01 May 2017 16:41:12 +0200</pubDate>
+      
+      <guid>http://syntaxsugar.de/posts/omnetpp-d2d-mode-selection/</guid>
+      <description>Device2Device (D2D) Mode Selection is the process of deciding whether a user device should communicate directly (D2D Mode) or via the eNodeB base station (Infrastructure Mode). A number of metrics can be taken into account for this decision, such as the interference generated that will affect other devices or the expected datarate of each mode. Once a researcher has come up with an idea, they will want to evaluate it. Using the OMNeT++ network simulator as a starting point, and adding the SIMUlte framework on top enables one to simulate LTE networks.</description>
+    </item>
+    
+  </channel>
+</rss>

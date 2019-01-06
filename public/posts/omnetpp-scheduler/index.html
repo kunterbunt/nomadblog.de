@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<head>
+  <title>Syntax Sugar</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/imgs/icons/favicon.png">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="/css/article.css" type="text/css">
+  <link rel="stylesheet" href="/css/github.css" type="text/css">
+  
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <a href="#" onclick="history.go(-1)"><button class="mdl-button mdl-js-button"><i class="material-icons">arrow_back</i></button></a><a href=http://syntaxsugar.de/><span class="mdl-layout-title">Syntax Sugar</span></a><i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i><a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a><i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i><a class="mdl-cell--hide-phone"> Implementing an LTE resource scheduler in OMNeT&#43;&#43;/SIMUlte</a>
+      </div>
+    </header>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <article class="container--content">
+          <div class="mdl-grid mdl-grid--no-spacing">
+            
+            <div class="mdl-cell mdl-cell--12-col">
+              
+              <h3 class="title text--centered accented">Implementing an LTE resource scheduler in OMNeT&#43;&#43;/SIMUlte</h3>
+              
+            </div>
+          </div>
+          <div class="mdl-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="content mdl-cell mdl-cell--5-col">
+              <p><a href="http://simulte.com/">SIMUlte</a> is an extension framework for the network simulator <a href="https://omnetpp.org/">OMNeT++</a>. It enables simulations of LTE telecommunications.</p>
+
+<p>In this context, <strong>resource scheduling</strong> is the problem of allocating transmission resources residing in the dimensions of time and of frequency band to user devices. A resource block can be depicted like this:</p>
+
+<p><img src="/imgs/omnetpp-scheduler/resource-block.png" alt="An LTE resource block" /></p>
+
+<p>There are a number of optimization targets we would like to meet:</p>
+
+<ul>
+<li>system throughput: we want to push out as much data as possible</li>
+<li>fairness: we want all devices to be able to push out data</li>
+<li>power efficiency: we want to use as little power as possible</li>
+</ul>
+
+<p>So in the end, resource scheduling boils down to a complex optimization problem. What&rsquo;s the best way of deciding who gets to transmit using which resource, so that our targets are met optimally? And since the problem can be shown to be NP-hard, we can relax it a bit, and instead of an optimal solution look for a <em>rather good</em> one:</p>
+
+<p><img src="/imgs/omnetpp-scheduler/scheduler.png" alt="A scheduler" /></p>
+
+<p>There are numerous ideas and concepts out there for scheduler implementations, each with their strong and weak suits. At some point a researcher will want to evaluate their proposed method. This is what I did within my research project at the Technical University Hamburg.</p>
+
+<p>So this is a general how-to on implementing a scheduling algorithm for the OMNeT++ simulator and the SIMUlte framework:</p>
+
+<ol>
+<li>Create your implementation files at <code>&lt;simulte dir&gt;/src/stack/mac/scheduling_modules/&lt;your scheduler.{cc, h}</code></li>
+<li>Have your class inherit from <code>LteScheduler</code>, and include <code>omnetpp.h, LteScheduler.h, LteCommon.h</code>.</li>
+<li>Open <code>LteCommon.h</code>, look for <code>enum SchedDiscipline { ... }</code> and add your scheduler class to the <code>enum</code>. Also look for and add to <code>const SchedDisciplineTable disciplines[] = { ELEM(DRR), ..., ELEM(YOUR_SCHEDULER)};</code>. Don&rsquo;t forget to <code>#include &lt;YOUR_SCHEDULER&gt;</code> in this file.</li>
+<li>Now look for <code>LteSchedulerEnb::getScheduler(SchedDiscipline discipline)</code> and modify it to include your scheduler - just follow the already present examples. Of course, <code>#include &lt;YOUR_SCHEDULER&gt;</code> once again.</li>
+<li>While in <code>LteSchedulerEnb.h</code>, also add your class as a <code>friend class</code>.</li>
+<li>Now you can get to the implementation of your scheduler. The <code>enum</code> from before tells you the keyword you can put into your <code>omnetpp.ini</code> so that your scheduler is used:</li>
+</ol>
+
+<pre><code>**.schedulingDisciplineDl = &quot;YOUR_SCHEDULER&quot;
+**.schedulingDisciplineUl = &quot;YOUR_SCHEDULER&quot;
+</code></pre>
+
+<p>You can use the following code as a starting point. The comments should tell you a little about what each function should be doing. This simple scheduler simply assings <code>band 0</code> to all devices - I had used it to determine if the simulator supports <code>band reassignment</code>: it doesn&rsquo;t at the time of writing, so don&rsquo;t expect good performance from this naive scheduler:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;omnetpp.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&lt;LteScheduler.h&gt;</span><span class="cp">
+</span><span class="cp">#include</span> <span class="cpf">&#34;LteCommon.h&#34;</span><span class="cp">
+</span><span class="cp"></span>
+<span class="k">class</span> <span class="nc">LteReassignment</span> <span class="o">:</span> <span class="k">public</span> <span class="k">virtual</span> <span class="n">LteScheduler</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">LteReassignment</span><span class="p">()</span> <span class="p">{}</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">LteReassignment</span><span class="p">()</span> <span class="p">{}</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * Apply the algorithm on temporal object &#39;activeConnectionTempSet_&#39;.
+</span><span class="cm">   */</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">prepareSchedule</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="c1">// Copy currently active connections to a working copy.
+</span><span class="c1"></span>    <span class="n">activeConnectionTempSet_</span> <span class="o">=</span> <span class="n">activeConnectionSet_</span><span class="p">;</span>
+
+    <span class="c1">// Go through all active connections.
+</span><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">ActiveSet</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">activeConnectionTempSet_</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">iterator</span> <span class="o">!=</span> <span class="n">activeConnectionTempSet_</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">iterator</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">MacCid</span> <span class="n">currentConnection</span> <span class="o">=</span> <span class="o">*</span><span class="n">iterator</span><span class="p">;</span>
+        <span class="n">MacNodeId</span> <span class="n">nodeId</span> <span class="o">=</span> <span class="n">MacCidToNodeId</span><span class="p">(</span><span class="n">currentConnection</span><span class="p">);</span>
+        <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; LteReassignment::prepareSchedule Considerung node &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">nodeId</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">getBinder</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">getOmnetId</span><span class="p">(</span><span class="n">nodeId</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;LteReassignment::prepareSchedule removing node &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">nodeId</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; because its ID is unknown&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="n">activeConnectionTempSet_</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">activeConnectionTempSet_</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+            <span class="n">i</span><span class="o">--</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// Assign band 0.        
+</span><span class="c1"></span>        <span class="n">SchedulingResult</span> <span class="n">result</span> <span class="o">=</span> <span class="n">schedule</span><span class="p">(</span><span class="n">currentConnection</span><span class="p">,</span> <span class="n">Band</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>        
+        <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; LteReassignment::prepareSchedule Scheduled node &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">nodeId</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; on band 0: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">schedulingResultToString</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">SchedulingResult</span><span class="o">::</span><span class="n">INACTIVE</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; LteReassignment::prepareSchedule removing node &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">nodeId</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; because it is now INACTIVE&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>            
+            <span class="n">activeConnectionTempSet_</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">activeConnectionTempSet_</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>
+            <span class="n">i</span><span class="o">--</span><span class="p">;</span>            
+        <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * Put the results from prepareSchedule() into the actually-used object &#39;activeConnectionSet_&#39;.
+</span><span class="cm">   */</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">commitSchedule</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="n">EV_STATICCONTEXT</span><span class="p">;</span>
+    <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; LteReassignment::commitSchedule&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">activeConnectionSet_</span> <span class="o">=</span> <span class="n">activeConnectionTempSet_</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * When the LteSchedulerEnb learns of an active connection it notifies the LteScheduler.
+</span><span class="cm">   * It is essential to save this information. (I think this should be the default behaviour and be done in the LteScheduler class)
+</span><span class="cm">   */</span>
+  <span class="kt">void</span> <span class="n">notifyActiveConnection</span><span class="p">(</span><span class="n">MacCid</span> <span class="n">cid</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+      <span class="n">EV_STATICCONTEXT</span><span class="p">;</span>      
+      <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; LteReassignment::notifyActiveConnection(&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cid</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;)&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+      <span class="n">activeConnectionSet_</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">cid</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="cm">/**
+</span><span class="cm">   * When the LteSchedulerEnb learns of a connection going inactive it notifies the LteScheduler.
+</span><span class="cm">   */</span>
+  <span class="kt">void</span> <span class="n">removeActiveConnection</span><span class="p">(</span><span class="n">MacCid</span> <span class="n">cid</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+      <span class="n">EV_STATICCONTEXT</span><span class="p">;</span>      
+      <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; LteReassignment::removeActiveConnection(&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">cid</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34;)&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+      <span class="n">activeConnectionSet_</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">cid</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="k">protected</span><span class="o">:</span>
+  <span class="k">enum</span> <span class="n">SchedulingResult</span> <span class="p">{</span>
+        <span class="n">OK</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TERMINATE</span><span class="p">,</span> <span class="n">INACTIVE</span><span class="p">,</span> <span class="n">INELIGIBLE</span>
+    <span class="p">};</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">schedulingResultToString</span><span class="p">(</span><span class="n">LteReassignment</span><span class="o">::</span><span class="n">SchedulingResult</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">SchedulingResult</span><span class="o">::</span><span class="n">TERMINATE</span> <span class="o">?</span> <span class="sa"></span><span class="s">&#34;TERMINATE&#34;</span> <span class="o">:</span>
+                <span class="n">result</span> <span class="o">==</span> <span class="n">SchedulingResult</span><span class="o">::</span><span class="n">INACTIVE</span> <span class="o">?</span> <span class="sa"></span><span class="s">&#34;INACTIVE&#34;</span> <span class="o">:</span>
+                <span class="n">result</span> <span class="o">==</span> <span class="n">SchedulingResult</span><span class="o">::</span><span class="n">INELIGIBLE</span> <span class="o">?</span> <span class="sa"></span><span class="s">&#34;INELIGIBLE&#34;</span> <span class="o">:</span>
+                <span class="sa"></span><span class="s">&#34;OK&#34;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+  <span class="n">LteReassignment</span><span class="o">::</span><span class="n">SchedulingResult</span> <span class="n">schedule</span><span class="p">(</span><span class="n">MacCid</span> <span class="n">connectionId</span><span class="p">,</span> <span class="n">Band</span> <span class="n">band</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">terminate</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">active</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">eligible</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">BandLimit</span><span class="o">&gt;</span> <span class="n">bandLimitVec</span><span class="p">;</span>
+    <span class="n">BandLimit</span> <span class="nf">bandLimit</span><span class="p">(</span><span class="n">band</span><span class="p">);</span>
+    <span class="n">bandLimitVec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">bandLimit</span><span class="p">);</span>
+
+    <span class="c1">// requestGrant(...) might alter the three bool values, so we can check them afterwards.
+</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">4294967295U</span><span class="p">;</span> <span class="c1">// 2^32    
+</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">granted</span> <span class="o">=</span> <span class="n">requestGrant</span><span class="p">(</span><span class="n">connectionId</span><span class="p">,</span> <span class="n">max</span><span class="p">,</span> <span class="n">terminate</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">eligible</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bandLimitVec</span><span class="p">);</span>
+    <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">granted</span> <span class="o">&lt;&lt;</span> <span class="sa"></span><span class="s">&#34; bytes granted.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">terminate</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">LteReassignment</span><span class="o">::</span><span class="n">SchedulingResult</span><span class="o">::</span><span class="n">TERMINATE</span><span class="p">;</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="o">!</span><span class="n">active</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">LteReassignment</span><span class="o">::</span><span class="n">SchedulingResult</span><span class="o">::</span><span class="n">INACTIVE</span><span class="p">;</span>
+    <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="o">!</span><span class="n">eligible</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">LteReassignment</span><span class="o">::</span><span class="n">SchedulingResult</span><span class="o">::</span><span class="n">INELIGIBLE</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="n">LteReassignment</span><span class="o">::</span><span class="n">SchedulingResult</span><span class="o">::</span><span class="n">OK</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span></code></pre></div>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </article>
+        <footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">Contact</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="mailto:sebastian@syntaxsugar.de" title="Send me a mail!" target="_self" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">email</i></a></li>
+      <li><a href="https://github.com/kunterbunt" title="Github" target="_blank" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><span><img class="icon" src="/imgs/icons/github.png"/></span></a></li>
+    </ul>
+  </div>
+    
+</footer>
+
+      </div>
+    </main>
+  </div>
+</body>
+
+
