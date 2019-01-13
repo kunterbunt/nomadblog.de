@@ -1,152 +1,34 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Syntax Sugar</title>
-    <link>http://syntaxsugar.de/posts/</link>
-    <description>Recent content in Posts on Syntax Sugar</description>
+    <title>Posts on Nomad Blog</title>
+    <link>http://nomadblog.de/posts/</link>
+    <description>Recent content in Posts on Nomad Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Nov 2017 15:56:05 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 06 Jan 2019 22:35:56 +0100</lastBuildDate>
     
-	<atom:link href="http://syntaxsugar.de/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://nomadblog.de/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Clion Libraries</title>
-      <link>http://syntaxsugar.de/posts/clion-libraries/</link>
-      <pubDate>Tue, 14 Nov 2017 15:56:05 +0100</pubDate>
+      <title>Budget</title>
+      <link>http://nomadblog.de/posts/planning/budget/</link>
+      <pubDate>Sun, 06 Jan 2019 22:35:56 +0100</pubDate>
       
-      <guid>http://syntaxsugar.de/posts/clion-libraries/</guid>
-      <description>CLion is my preferred C++ IDE. For my Master&amp;rsquo;s thesis, today I had to implement the calculation of Shapley&amp;rsquo;s value - a concept from game theory.
-I thought, okay, let&amp;rsquo;s do this properly. I&amp;rsquo;ll be using the calculation inside a simulator, but I want to implement it outside the scope of this huge code framework, so that I can run easily unit-test it. So I&amp;rsquo;ll use CLion and let it compile a library.</description>
+      <guid>http://nomadblog.de/posts/planning/budget/</guid>
+      <description>How the heck do you save 20k (where does this figure come from?)? You make a plan&amp;hellip; I guess.
+I work as a research assistant at a German university, my goal is to write a dissertation, get a PhD, and then I&amp;rsquo;m off. This has some advantages, as a) it pays quite well and b) it has an endpoint. In my case there is no fixed deadline, I am done when I am done.</description>
     </item>
     
     <item>
-      <title>OMNeT&#43;&#43; and INET Simulator Setup</title>
-      <link>http://syntaxsugar.de/posts/omnet-setup/</link>
-      <pubDate>Wed, 11 Oct 2017 10:51:10 +0200</pubDate>
+      <title>The Plan</title>
+      <link>http://nomadblog.de/posts/planning/theplan/</link>
+      <pubDate>Sun, 06 Jan 2019 22:17:03 +0100</pubDate>
       
-      <guid>http://syntaxsugar.de/posts/omnet-setup/</guid>
-      <description>I use the popular, modular OMNeT++ simulator for network simulation. The INET Framework adds lots of useful wired, wireless and mobile communication protocols and entities to the simulator.
-It turns out many people have problems compiling the two. So I&amp;rsquo;d like to give a quick introduction into how I got them working.
-I use OMNeT++ 5.1.1 together with INET 3.5. Both have newer versions, but another framework I use - simuLTE - requires these versions.</description>
-    </item>
-    
-    <item>
-      <title>Building an AUR package with invalid MD5Checksum</title>
-      <link>http://syntaxsugar.de/posts/makepkg/</link>
-      <pubDate>Wed, 11 Oct 2017 10:28:28 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/makepkg/</guid>
-      <description>I had an annoying problem: for the simulator I use for research I needed a specific library, as the simulator uses it.
-This specific library osgearth is available in the Arch Linux&amp;rsquo;s AUR, but the package maintainer put a wrong MD5 Checksum into the PKGBUILD. Let&amp;rsquo;s say we trust the maintainer and don&amp;rsquo;t believe someone tinkered with the files. What do you do?
-Go to an arbitrary directory
-cd ~/Download mkdir osgearth cd osgearth  Download the Snapshot from the AUR which should contain the PKGBUILD; extract it from the archive file.</description>
-    </item>
-    
-    <item>
-      <title>Controlling a display based on a PIR motion detector</title>
-      <link>http://syntaxsugar.de/posts/raspi-pir/</link>
-      <pubDate>Sun, 21 May 2017 15:09:23 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/raspi-pir/</guid>
-      <description>I am working on a Magic Mirror: that&amp;rsquo;s an old LCD display behind a two-way mirror. The mirror shows your reflection when you look at it, but all light coming from behind it passes through - so stuff displayed on the LCD appears on the mirror. A Raspberry Pi 3 controls what is shown using this open source modular smart mirror platform.
-Of course I don&amp;rsquo;t want the display to be always on - that&amp;rsquo;d be bad for my electricity bill.</description>
-    </item>
-    
-    <item>
-      <title>Simulation evaluation in OMNeT&#43;&#43;</title>
-      <link>http://syntaxsugar.de/posts/omnetpp-sim-evaluation/</link>
-      <pubDate>Mon, 01 May 2017 16:57:42 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/omnetpp-sim-evaluation/</guid>
-      <description>OMNeT++ network simulator allows for extensive and modular simulation of network scenarios. When simulation concept, implementation, configuration and running are said and done, the evaluation is the next step. Some built-in functionalities of the IDE allow for an idea on how the network performed. This was cumbersone for me personally, and I prefer to evaluate the numerical scalar result values in MATLAB anyway.
-When you run a large number of simulations, then you don&amp;rsquo;t want to open each file in the IDE, select the relevant entries and export them to a .</description>
-    </item>
-    
-    <item>
-      <title>Implementing D2D mode selection in OMNeT&#43;&#43;/SIMUlte</title>
-      <link>http://syntaxsugar.de/posts/omnetpp-d2d-mode-selection/</link>
-      <pubDate>Mon, 01 May 2017 16:41:12 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/omnetpp-d2d-mode-selection/</guid>
-      <description>Device2Device (D2D) Mode Selection is the process of deciding whether a user device should communicate directly (D2D Mode) or via the eNodeB base station (Infrastructure Mode). A number of metrics can be taken into account for this decision, such as the interference generated that will affect other devices or the expected datarate of each mode. Once a researcher has come up with an idea, they will want to evaluate it. Using the OMNeT++ network simulator as a starting point, and adding the SIMUlte framework on top enables one to simulate LTE networks.</description>
-    </item>
-    
-    <item>
-      <title>Implementing an LTE resource scheduler in OMNeT&#43;&#43;/SIMUlte</title>
-      <link>http://syntaxsugar.de/posts/omnetpp-scheduler/</link>
-      <pubDate>Mon, 01 May 2017 15:59:19 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/omnetpp-scheduler/</guid>
-      <description>SIMUlte is an extension framework for the network simulator OMNeT++. It enables simulations of LTE telecommunications.
-In this context, resource scheduling is the problem of allocating transmission resources residing in the dimensions of time and of frequency band to user devices. A resource block can be depicted like this:
-There are a number of optimization targets we would like to meet:
- system throughput: we want to push out as much data as possible fairness: we want all devices to be able to push out data power efficiency: we want to use as little power as possible  So in the end, resource scheduling boils down to a complex optimization problem.</description>
-    </item>
-    
-    <item>
-      <title>How to safely SSH into your own computer</title>
-      <link>http://syntaxsugar.de/posts/safe-ssh-to-own-computer/</link>
-      <pubDate>Thu, 30 Mar 2017 20:01:49 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/safe-ssh-to-own-computer/</guid>
-      <description>I came across a situation where I had to ssh into my personal computer from a remote server. Most of the time, you don&amp;rsquo;t want to do this. There&amp;rsquo;s botnets and other evil-doers out there that try to break into easily accessible machines, and a password-protected SSH connection is easily broken into.
-So don&amp;rsquo;t do this unless you really need to!
-Okay, so you really need to. What do we need to do?</description>
-    </item>
-    
-    <item>
-      <title>Reading module and simulation parameters in OMNeT&#43;&#43;</title>
-      <link>http://syntaxsugar.de/posts/omnetpp-reading-parameters/</link>
-      <pubDate>Wed, 29 Mar 2017 16:43:13 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/omnetpp-reading-parameters/</guid>
-      <description>I had a hard time figuring out how to access general simulation parameters such as the maximum simulation time max-sim-time at runtime from whatever module needs it.
-For modules it is rather straightforward. From any cModule object, there&amp;rsquo;s a par(const char* parname) function. Say you&amp;rsquo;re writing a module named OmniscientEntity (as I did), and it is defined in OmniscientEntity.ned as this:
-simple OmniscientEntity { parameters: // Used for CQI computation. Copy over from your channel.</description>
-    </item>
-    
-    <item>
-      <title>Finding equidistant points on a circle</title>
-      <link>http://syntaxsugar.de/posts/equidistant-points-on-circle/</link>
-      <pubDate>Wed, 29 Mar 2017 11:34:07 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/equidistant-points-on-circle/</guid>
-      <description>We know that every circle has \(360\degree = 2\pi\). It&amp;rsquo;s what makes them round.
-How can we find the (x,y) positions of n that are evenly distributed on a circle?
-Trigonometry to the rescue! All points on a circle are equidistant to the circle&amp;rsquo;s center. All we need to do is go around the circle evenly so that we arrive where we started after n steps.
-For this, we put each point at an angle \(\theta\) that goes from 360/n to 360 evenly in n steps:</description>
-    </item>
-    
-    <item>
-      <title>Lexicographical index calculation</title>
-      <link>http://syntaxsugar.de/posts/lexicographical-index/</link>
-      <pubDate>Tue, 28 Mar 2017 14:21:39 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/lexicographical-index/</guid>
-      <description>Building upon the idea of word frequency vectors, when implementing the idea in a language of your choice, you might encounter the problem of instantiating a container that is going to store the observed frequencies. In an efficient implementation you could instantiate such a container that holds the right number of items, which is \(\left| \sum_{language} \right| ^n\), e.g. for DNA the alphabet is \(\sum_{DNA}=\{A,C,T,G\}\). \(n\) is the word length for which you&amp;rsquo;re finding the frequency vector.</description>
-    </item>
-    
-    <item>
-      <title>Word frequency vectors and their uses</title>
-      <link>http://syntaxsugar.de/posts/word-frequency-vectors/</link>
-      <pubDate>Fri, 24 Mar 2017 18:45:50 +0100</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/word-frequency-vectors/</guid>
-      <description>During some work with a Bioinformatics group at the University of Göttingen, we would use word frequency vectors to determine evolutionary distances between DNA or Protein sequences.
-A DNA sequence, when saved digitally, is nothing more than a string of characters. Each one corresponds to one of the four possible nucleotides. You could call this DNA&amp;rsquo;s alphabet \(\sum_{DNA}=\{A,C,T,G\}\). A chain of these nucleotides makes up the structure of a DNA strand.</description>
-    </item>
-    
-    <item>
-      <title>Multi-domain nginx configuration</title>
-      <link>http://syntaxsugar.de/posts/nginx/</link>
-      <pubDate>Thu, 23 Mar 2017 20:21:28 +0100</pubDate>
-      
-      <guid>http://syntaxsugar.de/posts/nginx/</guid>
-      <description>nginx is an open-source HTTP server.
-Let&amp;rsquo;s say you&amp;rsquo;re running a server with nginx and you have two domains domain1.com and domain2.com. You also have the HTML of two websites sitting at ~/web/domain1.com/ and ~/web/domain2.com/. And now, of course, you want visitors that go to domain1.com to be directed to the website at ~/web/domain1.com/ and in an analog way for the other domain.
-For this you make the sites available by creating their configuration files</description>
+      <guid>http://nomadblog.de/posts/planning/theplan/</guid>
+      <description>The idea&amp;rsquo;s quite simple.
+ Save money. Buy a used car &amp;ndash; preferably a 4-wheel-drive. Equip that car with a bed and things you need when you live in a car. Learn how to repair said car. Go drive east until you can&amp;rsquo;t.  And meanwhile, write about it. Why? Mostly because I want to. I like reading other people&amp;rsquo;s blogs, I like to be able to keep all friends and family up-to-date, and just maybe someone likes what I do.</description>
     </item>
     
   </channel>

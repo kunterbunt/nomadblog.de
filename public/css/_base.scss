@@ -4,6 +4,7 @@ $desktop: "only screen and (min-width: 1025px)";
 
 $accent-color: #FF5722;
 $text-color: #090909;
+$text-color--weak: #505050;
 $almost-white: #FAFAFA;
 $darkgray: #424242;
 $gray: #8c8c8c;
@@ -17,7 +18,7 @@ $code-highlight: #EFF0F1;
 }
 body, html, .mdl-layout, .mdl-layout__content, .page-content {
   // height: auto;
-  color: #424242;
+  color: $text-color;
 }
 .mdl-grid {
   p {

@@ -1,139 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Syntax Sugar</title>
-    <link>http://syntaxsugar.de/tags/</link>
-    <description>Recent content in Tags on Syntax Sugar</description>
+    <title>Tags on Nomad Blog</title>
+    <link>http://nomadblog.de/tags/</link>
+    <description>Recent content in Tags on Nomad Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Mar 2017 23:27:43 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 06 Jan 2019 22:35:56 +0100</lastBuildDate>
     
-	<atom:link href="http://syntaxsugar.de/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://nomadblog.de/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title></title>
-      <link>http://syntaxsugar.de/tags/</link>
-      <pubDate>Wed, 22 Mar 2017 23:27:43 +0100</pubDate>
+      <title>Money</title>
+      <link>http://nomadblog.de/tags/money/</link>
+      <pubDate>Sun, 06 Jan 2019 22:35:56 +0100</pubDate>
       
-      <guid>http://syntaxsugar.de/tags/</guid>
+      <guid>http://nomadblog.de/tags/money/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Bioinformatics</title>
-      <link>http://syntaxsugar.de/tags/bioinformatics/</link>
-      <pubDate>Tue, 28 Mar 2017 14:21:39 +0200</pubDate>
+      <title>Planning</title>
+      <link>http://nomadblog.de/tags/planning/</link>
+      <pubDate>Sun, 06 Jan 2019 22:35:56 +0100</pubDate>
       
-      <guid>http://syntaxsugar.de/tags/bioinformatics/</guid>
+      <guid>http://nomadblog.de/tags/planning/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>C&#43;&#43;</title>
-      <link>http://syntaxsugar.de/tags/c&#43;&#43;/</link>
-      <pubDate>Tue, 14 Nov 2017 15:56:05 +0100</pubDate>
+      <title>Route</title>
+      <link>http://nomadblog.de/tags/route/</link>
+      <pubDate>Sun, 06 Jan 2019 22:17:03 +0100</pubDate>
       
-      <guid>http://syntaxsugar.de/tags/c&#43;&#43;/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Computer Networks</title>
-      <link>http://syntaxsugar.de/tags/computer-networks/</link>
-      <pubDate>Wed, 11 Oct 2017 10:51:10 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/computer-networks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>D2d</title>
-      <link>http://syntaxsugar.de/tags/d2d/</link>
-      <pubDate>Mon, 01 May 2017 16:41:12 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/d2d/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>http://syntaxsugar.de/tags/linux/</link>
-      <pubDate>Wed, 11 Oct 2017 10:51:10 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Lte</title>
-      <link>http://syntaxsugar.de/tags/lte/</link>
-      <pubDate>Mon, 01 May 2017 16:41:12 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/lte/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Nginx</title>
-      <link>http://syntaxsugar.de/tags/nginx/</link>
-      <pubDate>Thu, 23 Mar 2017 20:21:28 +0100</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/nginx/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Omnet&#43;&#43;</title>
-      <link>http://syntaxsugar.de/tags/omnet&#43;&#43;/</link>
-      <pubDate>Wed, 11 Oct 2017 10:51:10 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/omnet&#43;&#43;/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Raspberry Pi</title>
-      <link>http://syntaxsugar.de/tags/raspberry-pi/</link>
-      <pubDate>Sun, 21 May 2017 15:09:23 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/raspberry-pi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Server</title>
-      <link>http://syntaxsugar.de/tags/server/</link>
-      <pubDate>Thu, 23 Mar 2017 20:21:28 +0100</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/server/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Simulte</title>
-      <link>http://syntaxsugar.de/tags/simulte/</link>
-      <pubDate>Mon, 01 May 2017 16:41:12 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/simulte/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Tinkering</title>
-      <link>http://syntaxsugar.de/tags/tinkering/</link>
-      <pubDate>Sun, 21 May 2017 15:09:23 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/tinkering/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Trigonometry</title>
-      <link>http://syntaxsugar.de/tags/trigonometry/</link>
-      <pubDate>Wed, 29 Mar 2017 11:34:07 +0200</pubDate>
-      
-      <guid>http://syntaxsugar.de/tags/trigonometry/</guid>
+      <guid>http://nomadblog.de/tags/route/</guid>
       <description></description>
     </item>
     

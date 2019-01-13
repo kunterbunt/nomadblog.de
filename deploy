@@ -1,11 +1,11 @@
- #!/bin/bash
- if (( $# < 1));
- then
- 	echo "commit message required"
- 	exit
- fi
- hugo
- rsync -av public/ kunterbunt@vserver:~/web/nomadblog.de
- git add .
- git commit -m "$1"
- git push
+#!/bin/bash
+if (( $# < 1));
+then
+	echo "commit message required"
+	exit
+fi
+hugo
+rsync -av public/ kunterbunt@vserver:~/web/nomadblog.de
+git add .
+git commit -m "$1"
+git push

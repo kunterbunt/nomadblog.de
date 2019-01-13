@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nomad Blog</title>
-    <link>http://nomadblog.de/</link>
-    <description>Recent content on Nomad Blog</description>
+    <title>Route on Nomad Blog</title>
+    <link>http://nomadblog.de/tags/route/</link>
+    <description>Recent content in Route on Nomad Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Jan 2019 22:35:56 +0100</lastBuildDate>
+    <lastBuildDate>Sun, 06 Jan 2019 22:17:03 +0100</lastBuildDate>
     
-	<atom:link href="http://nomadblog.de/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://nomadblog.de/tags/route/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Budget</title>
-      <link>http://nomadblog.de/posts/planning/budget/</link>
-      <pubDate>Sun, 06 Jan 2019 22:35:56 +0100</pubDate>
-      
-      <guid>http://nomadblog.de/posts/planning/budget/</guid>
-      <description>How the heck do you save 20k (where does this figure come from?)? You make a plan&amp;hellip; I guess.
-I work as a research assistant at a German university, my goal is to write a dissertation, get a PhD, and then I&amp;rsquo;m off. This has some advantages, as a) it pays quite well and b) it has an endpoint. In my case there is no fixed deadline, I am done when I am done.</description>
-    </item>
     
     <item>
       <title>The Plan</title>

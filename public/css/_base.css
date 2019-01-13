@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+body, html, .mdl-layout, .mdl-layout__content, .page-content {
+  color: #090909; }
+
+.mdl-grid p {
+  font-size: 120%; }
+
+p, span, h1, h2, h3, h4, figcaption {
+  font-family: "Roboto", "Open Sans", sans-serif; }
+
+a {
+  text-decoration: none; }
+
+pre > code {
+  text-color: #090909; }
+
+p > code, li > code {
+  background-color: #EFF0F1;
+  padding: 2px 4px;
+  font-size: 90%; }
+
+.text--centered {
+  text-align: center; }
+
+footer .mdl-button span {
+  color: black; }
+footer .mdl-button i {
+  line-height: 36px;
+  color: black; }
+
+.mdl-layout__header {
+  background: white;
+  color: rgba(0, 0, 0, 0.87); }
+  .mdl-layout__header a {
+    color: rgba(0, 0, 0, 0.87);
+    text-transform: capitalize;
+    font-family: "Helvetica","Arial",sans-serif; }
+  .mdl-layout__header .mdl-layout__header-row {
+    padding-left: 0; }
+
+.icon {
+  height: 24px;
+  width: 24px; }
+
+.text-align--center {
+  text-align: center; }
+
+.capitalize {
+  text-transform: capitalize; }
+
+/*# sourceMappingURL=_base.css.map */

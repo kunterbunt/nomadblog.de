@@ -1,19 +1,14 @@
 @import "base";
 @import "mixins";
-$article__date-margin: 26px;
+$article__date-margin: 28px;
 $article__content--title-height: 32px;
 $article__content--image-height: 256px;
 $article__content-height: 64px;
 
-$background-color: #D5CDC2;
+$background-color: #DDE3E6;
 $post-color: #ECEFF1;
 $line-color: $darkgray;
 
-header {
-  a {
-    padding-left: 64px;
-  }
-}
 .image {
   background-repeat: no-repeat;
   background-size: contain;
@@ -102,7 +97,7 @@ header {
     }
 
     .article__date {
-      color: $text-color;
+      color: $text-color--weak;
       font-size: 150%;
       border: 2px solid $line-color;
       padding: 4px;
