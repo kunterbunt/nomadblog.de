@@ -84,10 +84,8 @@ footer .mdl-button i {
       .container--logo h1 {
         font-size: 32pt; } }
 
-.container--intro {
-  background-color: #DDE3E6; }
-  .container--intro p {
-    text-align: justify; }
+.intro p {
+  text-align: center; }
 
 .articles-header {
   background-color: #DDE3E6; }

@@ -9,7 +9,7 @@ logo = "/imgs/logos/planning/euro.png"
 hasMath = false
 +++
 
-How the heck do you save 20k (<a href={{< ref "posts/planning/theplan.md">}}>where does this figure come from?</a>)? You make a plan... I guess.
+How the heck do you save 20k (<a href={{< ref "/posts/planning/theplan.md">}}>where does this figure come from?</a>)? You make a plan... I guess.
 
 I work as a research assistant at a German university, my goal is to write a dissertation, get a PhD, and then I'm off. This has some advantages, as a) it pays quite well and b) it has an endpoint. In my case there is no fixed deadline, I am done when I am done. With teaching and industry projects that I have to do, unfortunately most of my time is spent not doing my own research, so on average people take 5 years to do this. 
 

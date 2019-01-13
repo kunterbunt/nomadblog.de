@@ -6,6 +6,7 @@ $article__content--image-height: 256px;
 $article__content-height: 64px;
 
 $background-color: #DDE3E6;
+$background-color-dark: rgb(66, 66, 66);
 $post-color: #ECEFF1;
 $line-color: $darkgray;
 
@@ -42,10 +43,9 @@ $line-color: $darkgray;
   }
 }
 
-.container--intro {
-  background-color: $background-color;
+.intro {  
   p {
-    text-align: justify;
+    text-align: center;
   }
 }
 
