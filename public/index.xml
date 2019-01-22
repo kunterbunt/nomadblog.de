@@ -6,10 +6,20 @@
     <description>Recent content on Nomad Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 06 Jan 2019 22:35:56 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 22 Jan 2019 20:43:57 +0100</lastBuildDate>
     
 	<atom:link href="http://nomadblog.de/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Investing</title>
+      <link>http://nomadblog.de/posts/planning/investing/</link>
+      <pubDate>Tue, 22 Jan 2019 20:43:57 +0100</pubDate>
+      
+      <guid>http://nomadblog.de/posts/planning/investing/</guid>
+      <description>I was recently approached by a financial advisor of sorts. Having just set up my first savings plan, I asked myself how I could invest the money I save. To be honest: I had no idea on this topic.
+Well, in a first meeting I had explained my situation to the advisor lady: I want to save about 20.000Eur within the next four years, and when I do invest it, it has to be in sustainable, green projects and businesses.</description>
+    </item>
     
     <item>
       <title>Budget</title>
