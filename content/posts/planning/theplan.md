@@ -2,12 +2,21 @@
 draft = false
 title = "The Plan"
 date = 2019-01-06T22:17:03+01:00
-summary = "Have you got a plan?"
+summary = "What's this about?"
 tags = ["planning", "money", "route"]
 showLogo = true
 logo = "/imgs/logos/planning/silk_road.png"
 hasMath = true
 +++
+
+Alright, so here I am. Sitting in my flat in Hamburg. What should one do with life? There's so many fascinating things to do, but one of them seems to beat all others: travel!   
+For uncountably many years (okay, not that many, but quite a few) I have known that travelling is one of my most favourite pastimes. I have done a few trips, from three-week excursions to China to nine-month travel-and-work trips to Australia, and each and every time I came to love the freedom that travelling brings. Just getting out there and seeing the world... 
+
+So, this plan has been forming in my head for a while. The main goal is to travel for a very long time and see as much as possible, with as little planning as required. Plans don't work when travelling, you always end up meeting someone that tells you about this very cool place that you must see and suddenly you've spent 2 weeks somewhere you didn't know had existed and all previous plans are rubbish now. 
+
+Working for money as you go is perfect for the just-out-of-school type, but only works in few specific countries (Australia, New Zealand and Canada usually). For what I have in mind it's not really an option. I certainly want to travel cheaply; I couldn't care less about luxury hotels, and I'm happy to work for food and lodging for locals or cool projects (both of which are easy to find on the Internet, e.g. through [helpx.net](https://www.helpx.net/)). 
+
+I would like to travel in my own car because of the flexibility it gives me - when the above-mentioned person tells me about this beautiful lake 2 hours from here in the middle of nowhere, then I want to be able to go there easily. And camp there easily. Travelling in a car means I have to start in Germany, but why not? Flying is bad for the environment anyway. Being in Germany, if I want to travel for a long while I kinda have to go east, so naturally the idea of the Silk Road, this ancient network of trade routes, comes to mind. As I said, little planning is intended, so deviating off is perfectly fine, but generally: go east on the paths the forefathers have taken. :)
 
 The idea's quite simple. 
 
