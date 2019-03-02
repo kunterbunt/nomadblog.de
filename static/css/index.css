@@ -84,16 +84,18 @@ footer .mdl-button i {
       .container--logo h1 {
         font-size: 32pt; } }
 
-.intro p {
-  text-align: center; }
+.intro {
+  background-color: #FDFDFD; }
+  .intro p {
+    text-align: center; }
 
 .articles-header {
-  background-color: #DDE3E6; }
+  background-color: #FDFDFD; }
   .articles-header h2 {
     margin-bottom: 0; }
 
 .articles-container {
-  background-color: #DDE3E6;
+  background-color: #FDFDFD;
   min-height: calc(100vh - 101px - 64px - 72px);
   text-align: center; }
   .articles-container i {
@@ -125,7 +127,7 @@ footer .mdl-button i {
         width: 65%;
         min-width: 400px; } }
     .articles-container .article:hover {
-      background-color: #d7dee2; }
+      background-color: #f8f8f8; }
       .articles-container .article:hover .article__content {
         -webkit-box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.75);
         -moz-box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.75);
@@ -151,7 +153,7 @@ footer .mdl-button i {
         cursor: pointer; }
     .articles-container .article .article__content {
       color: black;
-      background-color: #ECEFF1;
+      background-color: whitesmoke;
       -webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
       -moz-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
       box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
@@ -187,8 +189,12 @@ footer .mdl-button i {
     .articles-container .article .tags {
       padding: 0;
       margin: 0;
-      background-color: #dde3e6;
+      background-color: #424242;
       text-align: left; }
+      .articles-container .article .tags * {
+        color: #b3b3b3; }
+        .articles-container .article .tags *:hover {
+          color: white; }
 
 a.button {
   color: #8c8c8c;

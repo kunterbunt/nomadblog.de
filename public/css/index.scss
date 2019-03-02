@@ -5,9 +5,9 @@ $article__content--title-height: 32px;
 $article__content--image-height: 256px;
 $article__content-height: 64px;
 
-$background-color: #DDE3E6;
+$background-color: #FDFDFD;
 $background-color-dark: rgb(66, 66, 66);
-$post-color: #ECEFF1;
+$post-color: rgb(245,245,245);
 $line-color: $darkgray;
 
 .image {
@@ -44,6 +44,7 @@ $line-color: $darkgray;
 }
 
 .intro {  
+  background-color: $background-color;
   p {
     text-align: center;
   }
@@ -159,7 +160,13 @@ $line-color: $darkgray;
     .tags {
       padding: 0;
       margin: 0;
-      background-color: darken($post-color, 5%);
+      background-color: $darkgray;
+      * {
+        color: darken(white, 30%);
+        &:hover {
+          color: white;
+        }
+      }      
       text-align: left;
     }
   }
