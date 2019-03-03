@@ -1,0 +1,15 @@
+{{ partial "head-index.html" . }}
+<body>
+  <div class="articles-container mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    {{ partial "header-post.html" . }}
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <div class="mdl-grid">                 
+          {{ range .Data.Pages }}
+            {{ partial "tag.html" . }}
+          {{ end }}                                      
+      </div>
+      </div>
+    </main>
+  </div>
+</body>

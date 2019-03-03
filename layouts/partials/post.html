@@ -1,6 +1,6 @@
 <div class="article">
     <a href="{{.Permalink}}" title="{{.Params.summary}}" target="_self">
-      <span class="article__date">{{.Date.Format "02/01/2006"}}</span>
+      <span class="article__date">{{.Date.Format "January 2, 2006"}}</span>
       <div class="article__content">
         <div class="article__content--title-section">
           <!-- Hacky workaround to make parent link to post clickable. Nested link tricksery. -->
@@ -14,8 +14,10 @@
         <div class="article__content--image" style="background: url('{{.Params.logo}}');"></div>
         {{ end }}
         <div class="tags">
-          {{ range .Params.tags }}
-            <span><object><a class="button button--bottom mdl-button mdl-js-button mdl-js-ripple-effect" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></object></span>
+          {{ range $type, $val := .Params.tags }}
+            {{ if gt (len $val) 0 }}
+              <span><object><a class="button button--bottom mdl-button mdl-js-button mdl-js-ripple-effect" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></object></span>
+            {{ end }}
           {{ end }}
         </div>
       </div>

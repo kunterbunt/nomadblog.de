@@ -8,11 +8,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
   <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-  <link rel="stylesheet" href="/css/index.css" type="text/css">  
-  <script src="https://schnack.nomadblog.de/build/embed.js"
-    data-schnack-slug=""
-    data-schnack-target=".comments-go-here">
-  </script>
+  <link rel="stylesheet" href="/css/index.css" type="text/css">    
   {{ range .AlternativeOutputFormats -}}
     {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
   {{ end -}}

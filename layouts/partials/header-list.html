@@ -1,0 +1,13 @@
+<header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <a href="#" onclick="history.go(-1)">
+        <button class="mdl-button mdl-js-button">
+          <i class="material-icons">arrow_back</i>
+        </button></a>
+        <a href={{.Site.BaseURL}}>
+          <span class="mdl-layout-title">{{.Site.Title}}</span>
+        </a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <a href="/{{lower .Section}}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">{{.Section}}</a>        
+    </div>
+</header>

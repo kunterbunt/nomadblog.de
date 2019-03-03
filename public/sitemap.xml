@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://nomadblog.de/about/seba/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://nomadblog.de/posts/planning/investing/</loc>
     <lastmod>2019-01-22T20:43:57+01:00</lastmod>
   </url>
@@ -18,8 +23,20 @@
   </url>
   
   <url>
+    <loc>http://nomadblog.de/tags/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://nomadblog.de/</loc>
-    <lastmod>2019-01-22T20:43:57+01:00</lastmod>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://nomadblog.de/about/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -48,7 +65,7 @@
   
   <url>
     <loc>http://nomadblog.de/tags/</loc>
-    <lastmod>2019-01-22T20:43:57+01:00</lastmod>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
     <priority>0</priority>
   </url>
   

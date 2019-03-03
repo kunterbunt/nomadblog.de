@@ -4,5 +4,10 @@ baseurl = "http://nomadblog.de/"
 pluralizeListTitles = false
 PygmentsCodeFences = true
 pygmentsuseclasses = true
+ignoreFiles = [ "/css/.sass-cache" ]
+
 [Taxonomies]
 tag = "tags"
+
+[params]
+email = "sebastian@nomadblog.de"

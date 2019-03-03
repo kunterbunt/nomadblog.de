@@ -5,6 +5,8 @@ $desktop: "only screen and (min-width: 1025px)";
 $accent-color: #FF5722;
 $text-color: #090909;
 $text-color--weak: #505050;
+$background-color: #DDE3E6;
+$background-color-dark: darken($background-color, 50%);
 $almost-white: #FAFAFA;
 $darkgray: #424242;
 $gray: #8c8c8c;
@@ -16,9 +18,12 @@ $code-highlight: #EFF0F1;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
-body, html, .mdl-layout, .mdl-layout__content, .page-content {
-  // height: auto;
+body, html, .mdl-layout, .mdl-layout__content, .page-content {  
   color: $text-color;
+  background-color: $background-color;
+}
+.container--content {
+  min-height: calc(100vh - 64px - 100.5px);
 }
 .mdl-grid {
   p {
@@ -56,10 +61,15 @@ footer {
 .mdl-layout__header {
   background: white;
   color: rgba(0, 0, 0, 0.87);
-  a {
+  a, .mdl-navigation__link {
     color: rgba(0, 0, 0, 0.87);
     text-transform: capitalize;
-    font-family: "Helvetica","Arial",sans-serif;
+    font-family: "Helvetica","Arial",sans-serif;    
+  }
+  a.mdl-navigation__link, a.mdl-button {
+    &:hover {
+      border-bottom: 2px solid $accent-color;
+    }
   }
   .mdl-layout__header-row {
     padding-left: 0;
@@ -72,7 +82,33 @@ footer {
 .text-align--center {
   text-align: center;
 }
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 
 .capitalize {
   text-transform: capitalize;
+}
+
+.portrait {
+  border-radius: 50%;
+  width: 200px;
+  max-height: 200px;
+  margin: 0 auto;
+  object-fit: cover;
+}
+
+.dark {
+  background-color: $darkgray;
+  color: $almost-white;
+  code {
+    background-color: lighten($darkgray, 30%);
+  }
+  blockquote {
+    background: lighten($darkgray, 30%) !important; 
+  } 
 }
