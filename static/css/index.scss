@@ -5,8 +5,8 @@ $article__content--title-height: 32px;
 $article__content--image-height: 256px;
 $article__content-height: 64px;
 
-$background-color: #FDFDFD;
-$background-color-dark: rgb(66, 66, 66);
+$background-color: #DDE3E6;
+$background-color-dark: darken($background-color, 50%);
 $post-color: rgb(245,245,245);
 $line-color: $darkgray;
 

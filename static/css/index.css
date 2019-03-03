@@ -85,17 +85,17 @@ footer .mdl-button i {
         font-size: 32pt; } }
 
 .intro {
-  background-color: #FDFDFD; }
+  background-color: #DDE3E6; }
   .intro p {
     text-align: center; }
 
 .articles-header {
-  background-color: #FDFDFD; }
+  background-color: #DDE3E6; }
   .articles-header h2 {
     margin-bottom: 0; }
 
 .articles-container {
-  background-color: #FDFDFD;
+  background-color: #DDE3E6;
   min-height: calc(100vh - 101px - 64px - 72px);
   text-align: center; }
   .articles-container i {
@@ -127,7 +127,7 @@ footer .mdl-button i {
         width: 65%;
         min-width: 400px; } }
     .articles-container .article:hover {
-      background-color: #f8f8f8; }
+      background-color: #d7dee2; }
       .articles-container .article:hover .article__content {
         -webkit-box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.75);
         -moz-box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.75);
