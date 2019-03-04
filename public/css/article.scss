@@ -128,3 +128,8 @@ img {
     }
   }
 }
+
+#isso-thread {
+  min-height: 64px;
+  background-color: lighten($background-color, 5%);
+}
