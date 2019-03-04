@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nomad Blog</title>
+    <title>Tags on Nomad Blog</title>
     <link>https://nomadblog.de/tags/</link>
-    <description>Recent content on Nomad Blog</description>
+    <description>Recent content in Tags on Nomad Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 03 Mar 2019 13:54:07 +0100</lastBuildDate>
@@ -12,14 +12,39 @@
     
     
     <item>
-      <title>Sebastian</title>
-      <link>https://nomadblog.de/about/seba/</link>
+      <title></title>
+      <link>https://nomadblog.de/tags/</link>
       <pubDate>Sun, 03 Mar 2019 13:54:07 +0100</pubDate>
       
-      <guid>https://nomadblog.de/about/seba/</guid>
-      <description>Hi, I&amp;rsquo;m Sebastian. I live in the beautiful port city of Hamburg, in northern Germany.
-I am a research assistant by trade, and write about this life over at syntaxsugar.de.
-I have come to love the traveler&amp;rsquo;s life when I did my first big trip at 19 when I went to Australia for a travel &amp;amp; work stay of 9 months. We would work and save money for a car, then drive that car some several thousand kilometers south and enjoy every moment of it.</description>
+      <guid>https://nomadblog.de/tags/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Money</title>
+      <link>https://nomadblog.de/tags/money/</link>
+      <pubDate>Tue, 22 Jan 2019 20:43:57 +0100</pubDate>
+      
+      <guid>https://nomadblog.de/tags/money/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Planning</title>
+      <link>https://nomadblog.de/tags/planning/</link>
+      <pubDate>Tue, 22 Jan 2019 20:43:57 +0100</pubDate>
+      
+      <guid>https://nomadblog.de/tags/planning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Route</title>
+      <link>https://nomadblog.de/tags/route/</link>
+      <pubDate>Sun, 06 Jan 2019 22:17:03 +0100</pubDate>
+      
+      <guid>https://nomadblog.de/tags/route/</guid>
+      <description></description>
     </item>
     
   </channel>
