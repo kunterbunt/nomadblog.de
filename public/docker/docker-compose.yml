@@ -1,0 +1,10 @@
+isso:
+  image: wonderfall/isso
+  environment:
+    - GID=1000
+    - UID=1000
+  volumes:
+    - /home/kunterbunt/web/nomadblog.de/cfg:/config
+    - /home/kunterbunt/web/nomadblog.de/db:/db
+  ports:
+    - "127.0.0.1:8080:8080"
