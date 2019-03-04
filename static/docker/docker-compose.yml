@@ -1,4 +1,5 @@
 isso:
+  container_name: isso
   image: wonderfall/isso
   environment:
     - GID=1000
