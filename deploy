@@ -5,7 +5,7 @@ then
 	exit
 fi
 hugo
-rsync -av --exclude "public/db/" public/ kunterbunt@vserver:~/web/nomadblog.de
+rsync -arv --exclude=public/db/ public/ kunterbunt@vserver:~/web/nomadblog.de
 git add .
 git commit -m "$1"
 git push
