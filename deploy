@@ -5,7 +5,7 @@ then
 	exit
 fi
 hugo
-rsync -av public/ kunterbunt@vserver:~/web/nomadblog.de
+rsync -arv --delete public/ seba@server:~/web/nomadblog.de
 git add .
 git commit -m "$1"
 git push
