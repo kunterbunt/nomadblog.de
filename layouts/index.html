@@ -1,7 +1,7 @@
 {{ partial "head-index.html" . }}
 <body>
   <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    {{ partial "header.html" . }}
+    {{ partial "header-index.html" . }}
     <main class="page-content">
       <div class="intro mdl-grid mdl-grid--no-spacing">
         <div class="mdl-layout-spacer"></div>
@@ -15,8 +15,7 @@
           <h2 class="text-align--center">Latest Posts</h2>
         </div>
       </div>
-      {{ partial "posts-list--first-seven.html" . }}  
-      <div class="comments-go-here"></div>    
+      {{ partial "posts-list--first-seven.html" . }}        
       {{partial "footer.html" .}}
     </main>
   </div>

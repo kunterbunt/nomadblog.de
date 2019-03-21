@@ -1,0 +1,21 @@
+{{ partial "head-post.html" . }}
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    {{ partial "header-post.html" . }}
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <article class="dark container--content">          
+          <div class="mdl-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="content mdl-cell mdl-cell--5-col">
+              {{.Content}}
+            </div>
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </article>
+        {{partial "footer.html" .}}
+      </div>
+    </main>
+  </div>
+</body>
+{{ partial "render-math.html" . }}

@@ -3,52 +3,69 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://nomadblog.de/posts/planning/investing/</loc>
+    <loc>https://nomadblog.de/about/seba/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nomadblog.de/posts/planning/investing/</loc>
     <lastmod>2019-01-22T20:43:57+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://nomadblog.de/posts/planning/budget/</loc>
+    <loc>https://nomadblog.de/posts/planning/budget/</loc>
     <lastmod>2019-01-06T22:35:56+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://nomadblog.de/posts/planning/theplan/</loc>
+    <loc>https://nomadblog.de/posts/planning/theplan/</loc>
     <lastmod>2019-01-06T22:17:03+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://nomadblog.de/</loc>
-    <lastmod>2019-01-22T20:43:57+01:00</lastmod>
+    <loc>https://nomadblog.de/tags/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://nomadblog.de/tags/money/</loc>
+    <loc>https://nomadblog.de/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nomadblog.de/about/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nomadblog.de/tags/money/</loc>
     <lastmod>2019-01-22T20:43:57+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://nomadblog.de/tags/planning/</loc>
+    <loc>https://nomadblog.de/tags/planning/</loc>
     <lastmod>2019-01-22T20:43:57+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://nomadblog.de/posts/</loc>
+    <loc>https://nomadblog.de/posts/</loc>
     <lastmod>2019-01-22T20:43:57+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://nomadblog.de/tags/route/</loc>
+    <loc>https://nomadblog.de/tags/route/</loc>
     <lastmod>2019-01-06T22:17:03+01:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://nomadblog.de/tags/</loc>
-    <lastmod>2019-01-22T20:43:57+01:00</lastmod>
+    <loc>https://nomadblog.de/tags/</loc>
+    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
     <priority>0</priority>
   </url>
   

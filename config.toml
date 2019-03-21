@@ -1,8 +1,13 @@
 title = "Nomad Blog"
 languageCode = "en-us"
-baseurl = "http://nomadblog.de/"
+baseurl = "https://nomadblog.de/"
 pluralizeListTitles = false
 PygmentsCodeFences = true
 pygmentsuseclasses = true
+ignoreFiles = [ "/css/.sass-cache" ]
+
 [Taxonomies]
 tag = "tags"
+
+[params]
+email = "sebastian@nomadblog.de"
