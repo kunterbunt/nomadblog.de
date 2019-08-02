@@ -1,42 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Nomad Blog</title>
-    <link>https://nomadblog.de/posts/</link>
-    <description>Recent content in Posts on Nomad Blog</description>
+    <title>tech on Nomad Blog</title>
+    <link>https://nomadblog.de/tags/tech/</link>
+    <description>Recent content in tech on Nomad Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Jan 2019 20:43:57 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 14 Nov 2017 15:56:05 +0100</lastBuildDate>
     
-	<atom:link href="https://nomadblog.de/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://nomadblog.de/tags/tech/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Investing</title>
-      <link>https://nomadblog.de/posts/planning/investing/</link>
-      <pubDate>Tue, 22 Jan 2019 20:43:57 +0100</pubDate>
-      
-      <guid>https://nomadblog.de/posts/planning/investing/</guid>
-      <description>A conclusion on how I could invest the money I save to fight inflation and possibly grow it.</description>
-    </item>
-    
-    <item>
-      <title>Budget</title>
-      <link>https://nomadblog.de/posts/planning/budget/</link>
-      <pubDate>Sun, 06 Jan 2019 22:35:56 +0100</pubDate>
-      
-      <guid>https://nomadblog.de/posts/planning/budget/</guid>
-      <description>How do you acquire the moneyz?</description>
-    </item>
-    
-    <item>
-      <title>The Plan</title>
-      <link>https://nomadblog.de/posts/planning/theplan/</link>
-      <pubDate>Sun, 06 Jan 2019 22:17:03 +0100</pubDate>
-      
-      <guid>https://nomadblog.de/posts/planning/theplan/</guid>
-      <description>What&amp;rsquo;s this about?</description>
-    </item>
     
     <item>
       <title>Clion Libraries</title>

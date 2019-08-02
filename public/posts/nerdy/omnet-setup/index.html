@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+  <title>Nomad Blog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/imgs/icons/favicon.png">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="/css/article.css" type="text/css">
+  <link rel="stylesheet" href="/css/github.css" type="text/css">
+  
+  <script data-isso="//comments.nomadblog.de/"
+        src="//comments.nomadblog.de/js/embed.min.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <a href="#" onclick="history.go(-1)">
+        <button class="mdl-button mdl-js-button">
+          <i class="material-icons">arrow_back</i>
+        </button></a>
+        <a href=https://nomadblog.de/>
+          <span class="mdl-layout-title">Nomad Blog</span>
+        </a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <button class="mdl-button mdl-js-button">
+          <a class="mdl-cell--hide-phone"> OMNeT&#43;&#43; and INET Simulator Setup</a>
+        </button>
+    </div>
+</header>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <article class="container--content">
+          <div class="mdl-grid mdl-grid--no-spacing">
+            
+            <div class="mdl-cell mdl-cell--12-col">
+              
+              <h3 class="title text--centered accented">OMNeT&#43;&#43; and INET Simulator Setup</h3>
+              
+            </div>
+          </div>
+          <div class="mdl-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="content mdl-cell mdl-cell--5-col">
+              <p>I use the popular, modular <a href="https://omnetpp.org/">OMNeT++ simulator</a> for network simulation. The <a href="https://inet.omnetpp.org/">INET Framework</a> adds lots of useful wired, wireless and mobile communication protocols and entities to the simulator.<br />
+It turns out many people have problems compiling the two. So I&rsquo;d like to give a quick introduction into how <em>I</em> got them working.</p>
+
+<p>I use <code>OMNeT++ 5.1.1</code> together with <code>INET 3.5</code>. Both have newer versions, but another framework I use - <a href="http://simulte.com/">simuLTE</a> - requires these versions.</p>
+
+<p>For 3D renders, OMNeT++ uses <code>osgEarth</code>, where osg stands for <code>openscenegraph</code>, a library that provides some rendering functionality. At the time of writing <code>osgEarth</code> from the AUR won&rsquo;t build due to some incompatibility with the current <code>geos 3.6</code>. For me downgrading to <code>geos 3.5</code> leads to <code>osgEarth</code> compiling. <code>osgEarth</code> installs <code>openscenegraph</code> as a dependency.</p>
+
+<p>When this is installed, go to the directory you extracted <code>OMNeT++</code> into and execute</p>
+
+<pre><code>cd &lt;omnet-dir&gt;/
+./configure // watch out for missing packages and install as needed
+make -j4
+</code></pre>
+
+<p>Now run a sample simulation from <code>&lt;omnet-dir&gt;/samples/dyna</code> (or any other) and make sure the simulation runs.<br />
+Next, install <code>INET</code> by extracting it into <code>&lt;omnet-dir&gt;/inet</code>. I believe it is important for some projects that <code>INET</code> resides in a directory called exactly <code>inet</code> (no versioning in the name). Now</p>
+
+<pre><code>cd &lt;omnet-dir&gt;/samples/inet
+make makefiles
+make MODE=release -j4
+</code></pre>
+
+<p>And that should be it. The biggest problems arised for me from having all dependency libraries working, which sometimes don&rsquo;t play nice together when the versions are most recent. This is of course a problem of Arch Linux, which keeps verions most recent. Other distributions might work more easily.</p>
+
+            </div>
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </article>
+        <hr/>
+<div class="mdl-grid mdl-grid--no-spacing">    
+    <div class="mdl-cell mdl-cell--12-col">
+        <h4 class="text--centered">Comments</h4>
+    </div>    
+</div>
+<div class="mdl-grid">    
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--5-col">
+        <section id="isso-thread"></section>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+        <footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">Contact</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="mailto:sebastian@nomadblog.de" title="Send me a mail!" target="_self" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">email</i></a></li>
+    </ul>
+  </div>
+</footer>
+
+      </div>
+    </main>
+  </div>
+</body>
+
+

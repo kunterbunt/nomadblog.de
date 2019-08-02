@@ -18,7 +18,6 @@
       
       <guid>https://nomadblog.de/about/seba/</guid>
       <description>Hi, I&amp;rsquo;m Sebastian. I live in the beautiful port city of Hamburg, in northern Germany.
-I am a research assistant by trade, and write about this life over at syntaxsugar.de.
 I have come to love the traveler&amp;rsquo;s life when I did my first big trip at 19 when I went to Australia for a travel &amp;amp; work stay of 9 months. We would work and save money for a car, then drive that car some several thousand kilometers south and enjoy every moment of it.</description>
     </item>
     
@@ -28,8 +27,7 @@ I have come to love the traveler&amp;rsquo;s life when I did my first big trip a
       <pubDate>Tue, 22 Jan 2019 20:43:57 +0100</pubDate>
       
       <guid>https://nomadblog.de/posts/planning/investing/</guid>
-      <description>I was recently approached by a financial advisor of sorts. Having just set up my first savings plan, I asked myself how I could invest the money I save. To be honest: I had no idea on this topic.
-Well, in a first meeting I had explained my situation to the advisor lady: I want to save about 20.000Eur within the next four years, and when I do invest it, it has to be in sustainable, green projects and businesses.</description>
+      <description>A conclusion on how I could invest the money I save to fight inflation and possibly grow it.</description>
     </item>
     
     <item>
@@ -38,8 +36,7 @@ Well, in a first meeting I had explained my situation to the advisor lady: I wan
       <pubDate>Sun, 06 Jan 2019 22:35:56 +0100</pubDate>
       
       <guid>https://nomadblog.de/posts/planning/budget/</guid>
-      <description>How the heck do you save 20k (where does this figure come from?)? You make a plan&amp;hellip; I guess.
-I work as a research assistant at a German university, my goal is to write a dissertation, get a PhD, and then I&amp;rsquo;m off. This has some advantages, as a) it pays quite well and b) it has an endpoint. In my case there is no fixed deadline, I am done when I am done.</description>
+      <description>How do you acquire the moneyz?</description>
     </item>
     
     <item>
@@ -48,8 +45,131 @@ I work as a research assistant at a German university, my goal is to write a dis
       <pubDate>Sun, 06 Jan 2019 22:17:03 +0100</pubDate>
       
       <guid>https://nomadblog.de/posts/planning/theplan/</guid>
-      <description>Alright, so here I am. Sitting in my flat in Hamburg. What should one do with life? There&amp;rsquo;s so many fascinating things to do, but one of them seems to beat all others: travel!
-For uncountably many years (okay, not that many, but quite a few) I have known that travelling is one of my most favourite pastimes. I have done a few trips, from three-week excursions to China to nine-month travel-and-work trips to Australia, and each and every time I came to love the freedom that travelling brings.</description>
+      <description>What&amp;rsquo;s this about?</description>
+    </item>
+    
+    <item>
+      <title>Clion Libraries</title>
+      <link>https://nomadblog.de/posts/nerdy/clion-libraries/</link>
+      <pubDate>Tue, 14 Nov 2017 15:56:05 +0100</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/clion-libraries/</guid>
+      <description>How to link a static library project in CLion to a unittest executable.</description>
+    </item>
+    
+    <item>
+      <title>OMNeT&#43;&#43; and INET Simulator Setup</title>
+      <link>https://nomadblog.de/posts/nerdy/omnet-setup/</link>
+      <pubDate>Wed, 11 Oct 2017 10:51:10 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnet-setup/</guid>
+      <description>Installing the simulator + INET framework on Arch Linux.</description>
+    </item>
+    
+    <item>
+      <title>Building an AUR package with invalid MD5Checksum</title>
+      <link>https://nomadblog.de/posts/nerdy/makepkg/</link>
+      <pubDate>Wed, 11 Oct 2017 10:28:28 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/makepkg/</guid>
+      <description>I had an annoying problem: for the simulator I use for research I needed a specific library, as the simulator uses it.
+This specific library osgearth is available in the Arch Linux&amp;rsquo;s AUR, but the package maintainer put a wrong MD5 Checksum into the PKGBUILD. Let&amp;rsquo;s say we trust the maintainer and don&amp;rsquo;t believe someone tinkered with the files. What do you do?
+Go to an arbitrary directory
+cd ~/Download mkdir osgearth cd osgearth  Download the Snapshot from the AUR which should contain the PKGBUILD; extract it from the archive file.</description>
+    </item>
+    
+    <item>
+      <title>Controlling a display based on a PIR motion detector</title>
+      <link>https://nomadblog.de/posts/nerdy/raspi-pir/</link>
+      <pubDate>Sun, 21 May 2017 15:09:23 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/raspi-pir/</guid>
+      <description>How to turn a display on and off based on an infrared motion detector (PIR) using Python.</description>
+    </item>
+    
+    <item>
+      <title>Simulation evaluation in OMNeT&#43;&#43;</title>
+      <link>https://nomadblog.de/posts/nerdy/omnetpp-sim-evaluation/</link>
+      <pubDate>Mon, 01 May 2017 16:57:42 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnetpp-sim-evaluation/</guid>
+      <description>OMNeT++ network simulator allows for extensive and modular simulation of network scenarios. When simulation concept, implementation, configuration and running are said and done, the evaluation is the next step. Some built-in functionalities of the IDE allow for an idea on how the network performed. This was cumbersone for me personally, and I prefer to evaluate the numerical scalar result values in MATLAB anyway.
+When you run a large number of simulations, then you don&amp;rsquo;t want to open each file in the IDE, select the relevant entries and export them to a .</description>
+    </item>
+    
+    <item>
+      <title>Implementing D2D mode selection in OMNeT&#43;&#43;/SIMUlte</title>
+      <link>https://nomadblog.de/posts/nerdy/omnetpp-d2d-mode-selection/</link>
+      <pubDate>Mon, 01 May 2017 16:41:12 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnetpp-d2d-mode-selection/</guid>
+      <description>Device2Device (D2D) Mode Selection is the process of deciding whether a user device should communicate directly (D2D Mode) or via the eNodeB base station (Infrastructure Mode). A number of metrics can be taken into account for this decision, such as the interference generated that will affect other devices or the expected datarate of each mode. Once a researcher has come up with an idea, they will want to evaluate it. Using the OMNeT++ network simulator as a starting point, and adding the SIMUlte framework on top enables one to simulate LTE networks.</description>
+    </item>
+    
+    <item>
+      <title>Implementing an LTE resource scheduler in OMNeT&#43;&#43;/SIMUlte</title>
+      <link>https://nomadblog.de/posts/nerdy/omnetpp-scheduler/</link>
+      <pubDate>Mon, 01 May 2017 15:59:19 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnetpp-scheduler/</guid>
+      <description>SIMUlte is an extension framework for the network simulator OMNeT++. It enables simulations of LTE telecommunications.
+In this context, resource scheduling is the problem of allocating transmission resources residing in the dimensions of time and of frequency band to user devices. A resource block can be depicted like this:
+There are a number of optimization targets we would like to meet:
+ system throughput: we want to push out as much data as possible fairness: we want all devices to be able to push out data power efficiency: we want to use as little power as possible  So in the end, resource scheduling boils down to a complex optimization problem.</description>
+    </item>
+    
+    <item>
+      <title>How to safely SSH into your own computer</title>
+      <link>https://nomadblog.de/posts/nerdy/safe-ssh-to-own-computer/</link>
+      <pubDate>Thu, 30 Mar 2017 20:01:49 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/safe-ssh-to-own-computer/</guid>
+      <description>Allowing incoming SSH connections to your personal computer is something you want to avoid. If you have to do it, then do it in a safe way.</description>
+    </item>
+    
+    <item>
+      <title>Reading module and simulation parameters in OMNeT&#43;&#43;</title>
+      <link>https://nomadblog.de/posts/nerdy/omnetpp-reading-parameters/</link>
+      <pubDate>Wed, 29 Mar 2017 16:43:13 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnetpp-reading-parameters/</guid>
+      <description>How to access general simulation parameters at runtime.</description>
+    </item>
+    
+    <item>
+      <title>Finding equidistant points on a circle</title>
+      <link>https://nomadblog.de/posts/nerdy/equidistant-points-on-circle/</link>
+      <pubDate>Wed, 29 Mar 2017 11:34:07 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/equidistant-points-on-circle/</guid>
+      <description>How to find the positions of a number of equidistant points on a circle, including C++ code to do it for you.</description>
+    </item>
+    
+    <item>
+      <title>Lexicographical index calculation</title>
+      <link>https://nomadblog.de/posts/nerdy/lexicographical-index/</link>
+      <pubDate>Tue, 28 Mar 2017 14:21:39 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/lexicographical-index/</guid>
+      <description>Finding the index in a container that holds the frequency of elements in lexicographical order. Includes C++ source code for word frequency vectors (that makes use of this index calculation).</description>
+    </item>
+    
+    <item>
+      <title>Word frequency vectors and their uses</title>
+      <link>https://nomadblog.de/posts/nerdy/word-frequency-vectors/</link>
+      <pubDate>Fri, 24 Mar 2017 18:45:50 +0100</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/word-frequency-vectors/</guid>
+      <description>Word frequency vectors applied on evolutionary distances between DNA sequences and on bit error rates.</description>
+    </item>
+    
+    <item>
+      <title>Multi-domain nginx configuration</title>
+      <link>https://nomadblog.de/posts/nerdy/nginx/</link>
+      <pubDate>Thu, 23 Mar 2017 20:21:28 +0100</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/nginx/</guid>
+      <description>How to configure nginx to serve two different HTML directories to two different domains.</description>
     </item>
     
   </channel>

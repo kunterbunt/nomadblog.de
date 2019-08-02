@@ -27,38 +27,60 @@
           <span class="mdl-layout-title">Nomad Blog</span>
         </a>
         <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
-        <a href="/about" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">about</a>
+        <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a>
         <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
         <button class="mdl-button mdl-js-button">
-          <a class="mdl-cell--hide-phone"> Sebastian</a>
+          <a class="mdl-cell--hide-phone"> Building an AUR package with invalid MD5Checksum</a>
         </button>
     </div>
 </header>
     <main class="mdl-layout__content">
       <div class="page-content">
-        <article class="dark container--content">          
+        <article class="container--content">
+          <div class="mdl-grid mdl-grid--no-spacing">
+            
+            <div class="mdl-cell mdl-cell--12-col">
+              
+              <h3 class="title text--centered accented">Building an AUR package with invalid MD5Checksum</h3>
+              
+            </div>
+          </div>
           <div class="mdl-grid mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
-              
+              <p>I had an annoying problem: for the simulator I use for research I needed a specific library, as the simulator uses it.<br />
+This specific library <code>osgearth</code> is available in the Arch Linux&rsquo;s AUR, but the package maintainer put a wrong <code>MD5 Checksum</code> into the <code>PKGBUILD</code>. Let&rsquo;s say we trust the maintainer and don&rsquo;t believe someone tinkered with the files. What do you do?</p>
 
-<p><img class="portrait" src="/imgs/portrait-web.jpg"></p>
+<p>Go to an arbitrary directory</p>
 
-<h2 id="hi-i-m-sebastian">Hi, I&rsquo;m Sebastian.</h2>
+<pre><code>cd ~/Download
+mkdir osgearth
+cd osgearth
+</code></pre>
 
-<p>I live in the beautiful port city of Hamburg, in northern Germany.<br />
-I have come to love the traveler&rsquo;s life when I did my first big trip at 19 when I went to Australia for a travel &amp; work stay of 9 months. We would work and save money for a car, then drive that car some several thousand kilometers south and enjoy every moment of it.</p>
+<p>Download the <code>Snapshot</code> from the AUR which should contain the <code>PKGBUILD</code>; extract it from the archive file.</p>
 
-<p>Since then I&rsquo;ve made it a prime bucket list item to see as much of this world as I can; and hopefully do an indefinite trip. This blog documents my journey to achieving this life goal. :)</p>
-
-<p>I am a research assistant by trade, and study wireless communication systems - especially &ldquo;Cognitive Radio Networks&rdquo; that intelligently interact with their environment. You may find some nerdy tinkering / programming / Machine Learning stuff here from time to time.</p>
-
-<p>During nights, I am a <a href="www.slowfood.com">Slow Foodie</a>. This environmental catastrophe that we humans are causing is worrisome (understatement of the century), and food systems contribute some &gt;20% to CO2 emissions. At the same time the way we grow, harvest, produce, process, distribute, prepare and eat our food directly impacts our soil, our oceans, our animals, our roads and ships and airplanes, our wallets and our bodies and minds. Food is our fuel, and has such great effect on everything around us. So I&rsquo;m politically active in this area, as a Slow Food activist (I run <a href="www.slowfoodyouthh.de">the Hamburg Slow Food Youth site</a>) and as a private person trying to live sustainably. You&rsquo;ll surely find a rant here and there about this as well.</p>
+<p>Execute <code>makepkg -g</code> which downloads the files and computes the <code>MD5 Checksums</code>. Copy the checksum, edit the <code>PKGBUILD</code> and put it in there.<br />
+Now <code>makepkg -sc</code>, where <code>-s</code> installs missing dependencies, and <code>-c</code> cleans up afterwards.<br />
+Install the compiled package with <code>pacman -U &lt;package&gt;</code>.</p>
 
             </div>
             <div class="mdl-layout-spacer"></div>
           </div>
         </article>
+        <hr/>
+<div class="mdl-grid mdl-grid--no-spacing">    
+    <div class="mdl-cell mdl-cell--12-col">
+        <h4 class="text--centered">Comments</h4>
+    </div>    
+</div>
+<div class="mdl-grid">    
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--5-col">
+        <section id="isso-thread"></section>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
         <footer class="mdl-mini-footer">
   <div class="mdl-mini-footer__left-section">
     <div class="mdl-logo">Contact</div>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<head>
+  <title>Nomad Blog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/imgs/icons/favicon.png">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="/css/article.css" type="text/css">
+  <link rel="stylesheet" href="/css/github.css" type="text/css">
+  
+  <script data-isso="//comments.nomadblog.de/"
+        src="//comments.nomadblog.de/js/embed.min.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <a href="#" onclick="history.go(-1)">
+        <button class="mdl-button mdl-js-button">
+          <i class="material-icons">arrow_back</i>
+        </button></a>
+        <a href=https://nomadblog.de/>
+          <span class="mdl-layout-title">Nomad Blog</span>
+        </a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <button class="mdl-button mdl-js-button">
+          <a class="mdl-cell--hide-phone"> Clion Libraries</a>
+        </button>
+    </div>
+</header>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <article class="container--content">
+          <div class="mdl-grid mdl-grid--no-spacing">
+            
+            <div class="mdl-cell mdl-cell--12-col">
+              
+              <h3 class="title text--centered accented">Clion Libraries</h3>
+              
+            </div>
+          </div>
+          <div class="mdl-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="content mdl-cell mdl-cell--5-col">
+              <p><a href="https://www.jetbrains.com/clion/">CLion</a> is my preferred C++ IDE. For my Master&rsquo;s thesis, today I had to implement the calculation of <a href="https://en.wikipedia.org/wiki/Shapley_value">Shapley&rsquo;s value</a> - a concept from game theory.<br />
+I thought, okay, let&rsquo;s do this properly. I&rsquo;ll be using the calculation inside a simulator, but I want to implement it outside the scope of this huge code framework, so that I can run easily unit-test it. So I&rsquo;ll use CLion and let it compile a library. Later in the simulator I can just link the library in. My unit testing binary also just links the library. So if later I fix some bugs or add some functionality, I can easily run my tests to see if I broke anything, and then let it run on my simulator, without the hassle of copying over the code.</p>
+
+<p>CLion uses CMake to compile things. CMake is a wrapper for Makefiles. It has its own language and generates the Makefiles for you - it&rsquo;s a bit like SASS for CSS.<br />
+Let&rsquo;s see how to set up this whole thing in CLion.</p>
+
+<p>Create a new project which I&rsquo;ll call <code>shapley</code>. <code>src/shapley.{cpp,h}</code> will describe the library functionality. <code>src/tests/unittests.cpp</code> will describe a binary that runs the unit tests. So the initial folder structure is this:</p>
+
+<pre><code>src/
+  lib/
+    CMakeLists.txt
+    shapley.cpp
+    shapley.h    
+  tests/
+    CMakeLists.txt
+    unittests.cpp  
+CMakeLists.txt
+</code></pre>
+
+<p>Note the three <code>CMakeList.txt</code>&rsquo;s. The one inside <code>src/tests/</code> is for compiling just the unit tests. <code>src/lib/CMakeLists.txt</code> handles the library compilation. The top one includes both others and handles global configuration rules.</p>
+
+<p>First the <strong><code>src/tests/CMakeLists.txt</code>:</strong></p>
+
+<pre><code>cmake_minimum_required(VERSION 3.8)
+set(CMAKE_CXX_STANDARD 11)
+project(shapley-unittests)
+
+include_directories(..)
+
+find_library(LIBRARY-PATH :libcppunit.so)
+link_directories(${LIBRARY-PATH})
+
+set(SOURCE_FILES_UNITTESTS
+        unittests.cpp
+)
+
+set(CMAKE_BUILD_TYPE Debug)
+add_executable(unittests ${SOURCE_FILES_UNITTESTS})
+target_link_libraries(unittests shapley :libcppunit.so)
+</code></pre>
+
+<p><code>include_directories(..)</code> includes the <code>src/</code> directory so that we can include the library header as <code>#include &quot;shapley.h&quot;</code>.<br />
+<code>set(SOURCE_FILES_UNITTESTS ...)</code> sets this project&rsquo;s source files. Note that this is only the <code>unittests.cpp</code>.<br />
+<code>target_link_libraries(unittests shapley :libcppunit.so)</code> links both the <code>libshapley.a</code> and the <code>libcppunit.so</code>.</p>
+
+<p>Secondly <strong><code>src/lib/CMakeLists.txt</code>:</strong></p>
+
+<pre><code>cmake_minimum_required(VERSION 3.8)
+set(CMAKE_CXX_STANDARD 11)
+project(shapley-lib)
+
+include_directories(..)
+
+set(SOURCE_FILES_SHAPLEY-LIB
+        shapley.cpp
+        shapley.h)
+
+add_library(shapley ${SOURCE_FILES_SHAPLEY-LIB})
+</code></pre>
+
+<p>Finally the <strong>top <code>CMakeLists.txt</code>:</strong></p>
+
+<pre><code>cmake_minimum_required(VERSION 3.8)
+project(shapley)
+
+set(CMAKE_CXX_STANDARD 11)
+
+add_subdirectory(src/tests)
+add_subdirectory(src/lib)
+
+set_target_properties(unittests PROPERTIES RUNTIME_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/out/&quot;)
+set_target_properties(shapley PROPERTIES ARCHIVE_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/out/&quot;)
+</code></pre>
+
+<p><code>add_subdirectory()</code> includes the other <code>CMakeLists.txt</code>s.<br />
+The <code>set_target_properties</code> simply set the output directory.</p>
+
+<p>This covers the CMake setup. Now your <code>src/tests/unittests.cpp</code> can simply do this:</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &quot;shapley.h&quot;
+
+int main(int argc, const char *argv[]) {
+	hello();
+	std::cout &lt;&lt; &quot;Hello World&quot; &lt;&lt; std::endl;
+	return 0;
+}
+</code></pre>
+
+<p>and define <code>hello()</code> in your library, and it&rsquo;ll work.</p>
+
+            </div>
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </article>
+        <hr/>
+<div class="mdl-grid mdl-grid--no-spacing">    
+    <div class="mdl-cell mdl-cell--12-col">
+        <h4 class="text--centered">Comments</h4>
+    </div>    
+</div>
+<div class="mdl-grid">    
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--5-col">
+        <section id="isso-thread"></section>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+        <footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">Contact</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="mailto:sebastian@nomadblog.de" title="Send me a mail!" target="_self" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">email</i></a></li>
+    </ul>
+  </div>
+</footer>
+
+      </div>
+    </main>
+  </div>
+</body>
+
+

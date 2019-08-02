@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>math on Nomad Blog</title>
+    <link>https://nomadblog.de/tags/math/</link>
+    <description>Recent content in math on Nomad Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Mar 2017 11:34:07 +0200</lastBuildDate>
+    
+	<atom:link href="https://nomadblog.de/tags/math/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Finding equidistant points on a circle</title>
+      <link>https://nomadblog.de/posts/nerdy/equidistant-points-on-circle/</link>
+      <pubDate>Wed, 29 Mar 2017 11:34:07 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/equidistant-points-on-circle/</guid>
+      <description>How to find the positions of a number of equidistant points on a circle, including C++ code to do it for you.</description>
+    </item>
+    
+    <item>
+      <title>Lexicographical index calculation</title>
+      <link>https://nomadblog.de/posts/nerdy/lexicographical-index/</link>
+      <pubDate>Tue, 28 Mar 2017 14:21:39 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/lexicographical-index/</guid>
+      <description>Finding the index in a container that holds the frequency of elements in lexicographical order. Includes C++ source code for word frequency vectors (that makes use of this index calculation).</description>
+    </item>
+    
+    <item>
+      <title>Word frequency vectors and their uses</title>
+      <link>https://nomadblog.de/posts/nerdy/word-frequency-vectors/</link>
+      <pubDate>Fri, 24 Mar 2017 18:45:50 +0100</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/word-frequency-vectors/</guid>
+      <description>Word frequency vectors applied on evolutionary distances between DNA sequences and on bit error rates.</description>
+    </item>
+    
+  </channel>
+</rss>

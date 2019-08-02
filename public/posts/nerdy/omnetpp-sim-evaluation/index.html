@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+  <title>Nomad Blog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/imgs/icons/favicon.png">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="/css/article.css" type="text/css">
+  <link rel="stylesheet" href="/css/github.css" type="text/css">
+  
+  <script data-isso="//comments.nomadblog.de/"
+        src="//comments.nomadblog.de/js/embed.min.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <a href="#" onclick="history.go(-1)">
+        <button class="mdl-button mdl-js-button">
+          <i class="material-icons">arrow_back</i>
+        </button></a>
+        <a href=https://nomadblog.de/>
+          <span class="mdl-layout-title">Nomad Blog</span>
+        </a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <button class="mdl-button mdl-js-button">
+          <a class="mdl-cell--hide-phone"> Simulation evaluation in OMNeT&#43;&#43;</a>
+        </button>
+    </div>
+</header>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <article class="container--content">
+          <div class="mdl-grid mdl-grid--no-spacing">
+            
+            <div class="mdl-cell mdl-cell--12-col">
+              
+              <h3 class="title text--centered accented">Simulation evaluation in OMNeT&#43;&#43;</h3>
+              
+            </div>
+          </div>
+          <div class="mdl-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="content mdl-cell mdl-cell--5-col">
+              <p><a href="https://omnetpp.org/">OMNeT++ network simulator</a> allows for extensive and modular simulation of network scenarios. When simulation concept, implementation, configuration and running are said and done, the evaluation is the next step. Some built-in functionalities of the IDE allow for an idea on how the network performed. This was cumbersone for me personally, and I prefer to evaluate the numerical scalar result values in <code>MATLAB</code> anyway.</p>
+
+<p>When you run a large number of simulations, then you don&rsquo;t want to open each file in the IDE, select the relevant entries and export them to a <code>.csv</code> which MATLAB would understand. It&rsquo;s possible, sure, but also annoying. <code>grep</code> to the rescue: I just parse the scalar <code>.sca</code> files and look for the parameters of interest to me.</p>
+
+<p>This <code>parseScalar</code> bash script automates the parsing:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="k">if</span> <span class="o">((</span> <span class="nv">$#</span> &lt; <span class="m">3</span><span class="o">))</span><span class="p">;</span>
+<span class="k">then</span>
+	<span class="nb">echo</span> <span class="s2">&#34;Usage: parseScalar &lt;scalar file&gt; &lt;output file&gt; &lt;number of Rx devices&gt;&#34;</span>
+	<span class="nb">exit</span>
+<span class="k">fi</span>
+
+
+<span class="nv">file</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">target</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">numRx</span><span class="o">=</span><span class="nv">$3</span>
+
+<span class="k">if</span> <span class="o">[</span> -f <span class="nv">$target</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+	rm <span class="nv">$target</span>
+<span class="k">fi</span>
+touch <span class="nv">$target</span>
+
+<span class="k">for</span> <span class="o">((</span> <span class="nv">i</span><span class="o">=</span><span class="m">0</span><span class="p">;</span> i&lt;<span class="nv">$numRx</span><span class="p">;</span> <span class="nv">i</span><span class="o">+=</span><span class="m">1</span> <span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+	grep -e <span class="s2">&#34;^scalar LTECell.ueD2DRx\[</span><span class="nv">$i</span><span class="s2">\].udpApp\[0\][[:space:]]\{1,\}rcvdPk:sum(packetBytes)[[:space:]]\{1,\}&#34;</span> <span class="nv">$file</span>  <span class="p">|</span> awk <span class="s1">&#39;{print $4}&#39;</span> &gt;&gt; <span class="nv">$target</span>
+<span class="k">done</span></code></pre></div>
+<p>You can use this as a starting point. I was interested in each <code>ueD2DRx[$i]</code> device, specifically in the <code>sum(packetBytes)</code> of its <code>udpApp[0]</code>. Adjust for your needs; the biggest struggle had been being compatible with the spacing of the <code>.sca</code> file. It outputs only the numerical values into <code>$target</code>, one line for each value.</p>
+
+<p>Another hint: when you&rsquo;re still making sure your simulations do what they&rsquo;re supposed to, you can save the entire event log of a simulation to a file and then go through it using grep to filter only what&rsquo;s interesting. To do that, put into your configuration <code>omnetpp.ini</code>:
+/</p>
+
+<pre><code>cmdenv-express-mode = false
+cmdenv-output-file = ${resultdir}/lastrun.log
+</code></pre>
+
+<p>This will save the event log to a <code>lastrun.log</code> file. It&rsquo;s going to be quite huge, so <code>grep</code> the contents for e.g. a point in time or all output from a specific module.</p>
+
+            </div>
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </article>
+        <hr/>
+<div class="mdl-grid mdl-grid--no-spacing">    
+    <div class="mdl-cell mdl-cell--12-col">
+        <h4 class="text--centered">Comments</h4>
+    </div>    
+</div>
+<div class="mdl-grid">    
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--5-col">
+        <section id="isso-thread"></section>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+        <footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">Contact</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="mailto:sebastian@nomadblog.de" title="Send me a mail!" target="_self" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">email</i></a></li>
+    </ul>
+  </div>
+</footer>
+
+      </div>
+    </main>
+  </div>
+</body>
+
+

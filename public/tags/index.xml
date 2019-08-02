@@ -21,7 +21,7 @@
     </item>
     
     <item>
-      <title>Money</title>
+      <title>money</title>
       <link>https://nomadblog.de/tags/money/</link>
       <pubDate>Tue, 22 Jan 2019 20:43:57 +0100</pubDate>
       
@@ -30,7 +30,7 @@
     </item>
     
     <item>
-      <title>Planning</title>
+      <title>planning</title>
       <link>https://nomadblog.de/tags/planning/</link>
       <pubDate>Tue, 22 Jan 2019 20:43:57 +0100</pubDate>
       
@@ -39,11 +39,38 @@
     </item>
     
     <item>
-      <title>Route</title>
+      <title>route</title>
       <link>https://nomadblog.de/tags/route/</link>
       <pubDate>Sun, 06 Jan 2019 22:17:03 +0100</pubDate>
       
       <guid>https://nomadblog.de/tags/route/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tech</title>
+      <link>https://nomadblog.de/tags/tech/</link>
+      <pubDate>Tue, 14 Nov 2017 15:56:05 +0100</pubDate>
+      
+      <guid>https://nomadblog.de/tags/tech/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>simulation</title>
+      <link>https://nomadblog.de/tags/simulation/</link>
+      <pubDate>Wed, 11 Oct 2017 10:51:10 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/tags/simulation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>math</title>
+      <link>https://nomadblog.de/tags/math/</link>
+      <pubDate>Wed, 29 Mar 2017 11:34:07 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/tags/math/</guid>
       <description></description>
     </item>
     

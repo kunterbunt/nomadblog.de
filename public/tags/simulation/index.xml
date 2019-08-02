@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>simulation on Nomad Blog</title>
+    <link>https://nomadblog.de/tags/simulation/</link>
+    <description>Recent content in simulation on Nomad Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Oct 2017 10:51:10 +0200</lastBuildDate>
+    
+	<atom:link href="https://nomadblog.de/tags/simulation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OMNeT&#43;&#43; and INET Simulator Setup</title>
+      <link>https://nomadblog.de/posts/nerdy/omnet-setup/</link>
+      <pubDate>Wed, 11 Oct 2017 10:51:10 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnet-setup/</guid>
+      <description>Installing the simulator + INET framework on Arch Linux.</description>
+    </item>
+    
+    <item>
+      <title>Simulation evaluation in OMNeT&#43;&#43;</title>
+      <link>https://nomadblog.de/posts/nerdy/omnetpp-sim-evaluation/</link>
+      <pubDate>Mon, 01 May 2017 16:57:42 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnetpp-sim-evaluation/</guid>
+      <description>OMNeT++ network simulator allows for extensive and modular simulation of network scenarios. When simulation concept, implementation, configuration and running are said and done, the evaluation is the next step. Some built-in functionalities of the IDE allow for an idea on how the network performed. This was cumbersone for me personally, and I prefer to evaluate the numerical scalar result values in MATLAB anyway.
+When you run a large number of simulations, then you don&amp;rsquo;t want to open each file in the IDE, select the relevant entries and export them to a .</description>
+    </item>
+    
+    <item>
+      <title>Implementing D2D mode selection in OMNeT&#43;&#43;/SIMUlte</title>
+      <link>https://nomadblog.de/posts/nerdy/omnetpp-d2d-mode-selection/</link>
+      <pubDate>Mon, 01 May 2017 16:41:12 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnetpp-d2d-mode-selection/</guid>
+      <description>Device2Device (D2D) Mode Selection is the process of deciding whether a user device should communicate directly (D2D Mode) or via the eNodeB base station (Infrastructure Mode). A number of metrics can be taken into account for this decision, such as the interference generated that will affect other devices or the expected datarate of each mode. Once a researcher has come up with an idea, they will want to evaluate it. Using the OMNeT++ network simulator as a starting point, and adding the SIMUlte framework on top enables one to simulate LTE networks.</description>
+    </item>
+    
+    <item>
+      <title>Implementing an LTE resource scheduler in OMNeT&#43;&#43;/SIMUlte</title>
+      <link>https://nomadblog.de/posts/nerdy/omnetpp-scheduler/</link>
+      <pubDate>Mon, 01 May 2017 15:59:19 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnetpp-scheduler/</guid>
+      <description>SIMUlte is an extension framework for the network simulator OMNeT++. It enables simulations of LTE telecommunications.
+In this context, resource scheduling is the problem of allocating transmission resources residing in the dimensions of time and of frequency band to user devices. A resource block can be depicted like this:
+There are a number of optimization targets we would like to meet:
+ system throughput: we want to push out as much data as possible fairness: we want all devices to be able to push out data power efficiency: we want to use as little power as possible  So in the end, resource scheduling boils down to a complex optimization problem.</description>
+    </item>
+    
+    <item>
+      <title>Reading module and simulation parameters in OMNeT&#43;&#43;</title>
+      <link>https://nomadblog.de/posts/nerdy/omnetpp-reading-parameters/</link>
+      <pubDate>Wed, 29 Mar 2017 16:43:13 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/omnetpp-reading-parameters/</guid>
+      <description>How to access general simulation parameters at runtime.</description>
+    </item>
+    
+  </channel>
+</rss>

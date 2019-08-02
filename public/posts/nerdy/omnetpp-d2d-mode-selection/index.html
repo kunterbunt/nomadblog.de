@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<head>
+  <title>Nomad Blog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/imgs/icons/favicon.png">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="/css/article.css" type="text/css">
+  <link rel="stylesheet" href="/css/github.css" type="text/css">
+  
+  <script data-isso="//comments.nomadblog.de/"
+        src="//comments.nomadblog.de/js/embed.min.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <a href="#" onclick="history.go(-1)">
+        <button class="mdl-button mdl-js-button">
+          <i class="material-icons">arrow_back</i>
+        </button></a>
+        <a href=https://nomadblog.de/>
+          <span class="mdl-layout-title">Nomad Blog</span>
+        </a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <button class="mdl-button mdl-js-button">
+          <a class="mdl-cell--hide-phone"> Implementing D2D mode selection in OMNeT&#43;&#43;/SIMUlte</a>
+        </button>
+    </div>
+</header>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <article class="container--content">
+          <div class="mdl-grid mdl-grid--no-spacing">
+            
+            <div class="mdl-cell mdl-cell--12-col">
+              
+              <h3 class="title text--centered accented">Implementing D2D mode selection in OMNeT&#43;&#43;/SIMUlte</h3>
+              
+            </div>
+          </div>
+          <div class="mdl-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="content mdl-cell mdl-cell--5-col">
+              <p><code>Device2Device (D2D) Mode Selection</code> is the process of deciding whether a user device should communicate directly (<code>D2D Mode</code>) or via the eNodeB base station (<code>Infrastructure Mode</code>). A number of metrics can be taken into account for this decision, such as the interference generated that will affect other devices or the expected datarate of each mode. Once a researcher has come up with an idea, they will want to evaluate it. Using the <a href="https://omnetpp.org/">OMNeT++ network simulator</a> as a starting point, and adding the <a href="http://simulte.com/">SIMUlte framework</a> on top enables one to simulate LTE networks.</p>
+
+<p>To implement your own mode selection algorithm, follow the following steps. I have implemented a mode selection that simply forces a device to transmit via D2D if it is capable:</p>
+
+<ol>
+<li>Add your implementation files to <code>&lt;simulte dir&gt;/src/stack/d2dModeSelection/d2dModeSelectionForcedD2D/D2DModeSelectionFOrcedD2D.{cc, h}</code>.</li>
+
+<li><p>To <code>.../d2dModeSelection/D2DModeSelection.ned</code> add</p>
+
+<pre><code>simple D2DModeSelectionForcedD2D extends D2DModeSelectionBase {
+    parameters:
+        @class(&quot;D2DModeSelectionForcedD2D&quot;);    
+}
+</code></pre></li>
+</ol>
+
+<ul>
+<li>The <code>.ned</code> tells the simulator to look for a <code>D2DModeSelectionForcedD2D</code> class. In <code>D2DModeSelectionForcedD2D.cc</code> put <code>Define_Module(D2DModeSelectionForcedD2D);</code> to link them together.</li>
+
+<li><p>Now all that&rsquo;s really left is to implement <code>doModeSelection()</code>. Consider my implementation a starting point:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">void</span> <span class="n">D2DModeSelectionForcedD2D</span><span class="o">::</span><span class="n">doModeSelection</span><span class="p">()</span> <span class="p">{</span>
+<span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; D2DModeSelectionForcedD2D::doModeSelection for &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">peeringModeMap_</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; nodes.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// The switch list will contain entries of devices whose mode switch.
+</span><span class="c1">// Clear it to start.
+</span><span class="c1"></span><span class="n">switchList_</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="c1">// Go through all devices.
+</span><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">MacNodeId</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">MacNodeId</span><span class="p">,</span> <span class="n">LteD2DMode</span><span class="o">&gt;&gt;::</span><span class="n">iterator</span> <span class="n">peeringMapIterator</span> <span class="o">=</span> <span class="n">peeringModeMap_</span><span class="o">-&gt;</span><span class="n">begin</span><span class="p">();</span>
+<span class="k">for</span> <span class="p">(;</span> <span class="n">peeringMapIterator</span> <span class="o">!=</span> <span class="n">peeringModeMap_</span><span class="o">-&gt;</span><span class="n">end</span><span class="p">();</span> <span class="n">peeringMapIterator</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Grab source node.
+</span><span class="c1"></span>    <span class="n">MacNodeId</span> <span class="n">srcId</span> <span class="o">=</span> <span class="n">peeringMapIterator</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+
+    <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">Checking for starting node &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">srcId</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// Make sure node is in this cell.
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="n">binder_</span><span class="o">-&gt;</span><span class="n">getNextHop</span><span class="p">(</span><span class="n">srcId</span><span class="p">)</span> <span class="o">!=</span> <span class="n">mac_</span><span class="o">-&gt;</span><span class="n">getMacCellId</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">skipping. It has left the cell.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">continue</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Grab handle to &lt;dest, mode&gt; map.
+</span><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">MacNodeId</span><span class="p">,</span> <span class="n">LteD2DMode</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">destModeMapIterator</span> <span class="o">=</span> <span class="n">peeringMapIterator</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(;</span> <span class="n">destModeMapIterator</span> <span class="o">!=</span> <span class="n">peeringMapIterator</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="n">destModeMapIterator</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Grab destination.
+</span><span class="c1"></span>        <span class="n">MacNodeId</span> <span class="n">dstId</span> <span class="o">=</span> <span class="n">destModeMapIterator</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+
+        <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t\t</span><span class="s">-&gt; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">dstId</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+
+        <span class="c1">// Make sure node is in this cell.
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">binder_</span><span class="o">-&gt;</span><span class="n">getNextHop</span><span class="p">(</span><span class="n">dstId</span><span class="p">)</span> <span class="o">!=</span> <span class="n">mac_</span><span class="o">-&gt;</span><span class="n">getMacCellId</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;has left the cell.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Skip nodes that are performing handover.
+</span><span class="c1"></span>        <span class="k">if</span> <span class="p">(</span><span class="n">binder_</span><span class="o">-&gt;</span><span class="n">hasUeHandoverTriggered</span><span class="p">(</span><span class="n">dstId</span><span class="p">)</span> <span class="o">||</span> <span class="n">binder_</span><span class="o">-&gt;</span><span class="n">hasUeHandoverTriggered</span><span class="p">(</span><span class="n">srcId</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;is performing handover.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+        <span class="n">LteD2DMode</span> <span class="n">oldMode</span> <span class="o">=</span> <span class="n">destModeMapIterator</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
+        <span class="c1">// New mode is always DM.
+</span><span class="c1"></span>        <span class="n">LteD2DMode</span> <span class="n">newMode</span> <span class="o">=</span> <span class="n">DM</span><span class="p">;</span> <span class="c1">// DM = Direct Mode
+</span><span class="c1"></span>        <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; D2DModeSelectionForcedD2D::doModeSelection Node &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">srcId</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; will communicate with node &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">dstId</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; directly.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">newMode</span> <span class="o">!=</span> <span class="n">oldMode</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Mark this flow as switching modes.
+</span><span class="c1"></span>            <span class="n">FlowId</span> <span class="n">p</span><span class="p">(</span><span class="n">srcId</span><span class="p">,</span> <span class="n">dstId</span><span class="p">);</span>
+            <span class="n">FlowModeInfo</span> <span class="n">info</span><span class="p">;</span>
+            <span class="n">info</span><span class="p">.</span><span class="n">flow</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+            <span class="n">info</span><span class="p">.</span><span class="n">oldMode</span> <span class="o">=</span> <span class="n">oldMode</span><span class="p">;</span>
+            <span class="n">info</span><span class="p">.</span><span class="n">newMode</span> <span class="o">=</span> <span class="n">newMode</span><span class="p">;</span>
+            <span class="n">switchList_</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
+            <span class="c1">// Update peering map.
+</span><span class="c1"></span>            <span class="n">destModeMapIterator</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">=</span> <span class="n">newMode</span><span class="p">;</span>
+            <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\t</span><span class="s">Flow: &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">srcId</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; --&gt; &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">dstId</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; switches to &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">d2dModeToA</span><span class="p">(</span><span class="n">newMode</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; mode.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+
+            </div>
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </article>
+        <hr/>
+<div class="mdl-grid mdl-grid--no-spacing">    
+    <div class="mdl-cell mdl-cell--12-col">
+        <h4 class="text--centered">Comments</h4>
+    </div>    
+</div>
+<div class="mdl-grid">    
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--5-col">
+        <section id="isso-thread"></section>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+        <footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">Contact</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="mailto:sebastian@nomadblog.de" title="Send me a mail!" target="_self" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">email</i></a></li>
+    </ul>
+  </div>
+</footer>
+
+      </div>
+    </main>
+  </div>
+</body>
+
+
