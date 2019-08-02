@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Nomad Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 22 Jan 2019 20:43:57 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 02 Aug 2019 16:58:16 +0200</lastBuildDate>
     
 	<atom:link href="https://nomadblog.de/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Neural Networks Tutorial</title>
+      <link>https://nomadblog.de/posts/nerdy/neural-networks-tutorial/</link>
+      <pubDate>Fri, 02 Aug 2019 16:58:16 +0200</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/neural-networks-tutorial/</guid>
+      <description>Artificial Neural Networks (ANNs) are the hype in Computer Science, and I have jumped on the bandwagon. I will surely write about how I want to apply ANNs to the field of communication networks in some later post, but for now I want to present what I have gathered about these lovely little thingies, and show it in a way that would have been very useful to me when I first started looking into ANNs:</description>
+    </item>
     
     <item>
       <title>Investing</title>

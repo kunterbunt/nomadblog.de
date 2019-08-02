@@ -4,13 +4,42 @@
   
   <url>
     <loc>https://nomadblog.de/tags/</loc>
-    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+    <lastmod>2019-08-02T16:58:16+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://nomadblog.de/</loc>
-    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
+    <lastmod>2019-08-02T16:58:16+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nomadblog.de/posts/nerdy/neural-networks-tutorial/</loc>
+    <lastmod>2019-08-02T16:58:16+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://nomadblog.de/posts/</loc>
+    <lastmod>2019-08-02T16:58:16+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nomadblog.de/tags/</loc>
+    <lastmod>2019-08-02T16:58:16+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nomadblog.de/tags/machine-learning/</loc>
+    <lastmod>2019-08-02T16:58:16+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://nomadblog.de/tags/tech/</loc>
+    <lastmod>2019-08-02T16:58:16+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -26,20 +55,8 @@
   </url>
   
   <url>
-    <loc>https://nomadblog.de/tags/</loc>
-    <lastmod>2019-03-03T13:54:07+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://nomadblog.de/posts/planning/investing/</loc>
     <lastmod>2019-01-22T20:43:57+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nomadblog.de/posts/</loc>
-    <lastmod>2019-01-22T20:43:57+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -73,12 +90,6 @@
   <url>
     <loc>https://nomadblog.de/posts/nerdy/clion-libraries/</loc>
     <lastmod>2017-11-14T15:56:05+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://nomadblog.de/tags/tech/</loc>
-    <lastmod>2017-11-14T15:56:05+01:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

@@ -1,5 +1,5 @@
 +++
-draft = true
+draft = false
 title = "Neural Networks Tutorial"
 date = 2019-08-02T16:58:16+02:00
 summary = ""
