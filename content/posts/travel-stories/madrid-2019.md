@@ -53,7 +53,6 @@ And then the picturesque towns on the way...
 
 ![cafe](/imgs/2019-madrid/17.jpg)
 ![cafe](/imgs/2019-madrid/13.jpg)
-![cafe](/imgs/2019-madrid/19.jpg)
 ![cafe](/imgs/2019-madrid/10.jpg)
 ![cafe](/imgs/2019-madrid/7.jpg)
 ![cafe](/imgs/2019-madrid/3.jpg)
@@ -67,7 +66,6 @@ And of course: the nature.
 ![cafe](/imgs/2019-madrid/15.jpg)
 ![cafe](/imgs/2019-madrid/12.jpg)
 ![cafe](/imgs/2019-madrid/8.jpg)
-![cafe](/imgs/2019-madrid/19.jpg)
 ![cafe](/imgs/2019-madrid/7.jpg)
 ![cafe](/imgs/2019-madrid/6.jpg)
 ![cafe](/imgs/2019-madrid/5.jpg)
