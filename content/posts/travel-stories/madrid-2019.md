@@ -2,7 +2,7 @@
 draft = false
 title = "Madrid + Portugal"
 date = 2019-06-22T21:53:21+02:00
-summary = "A short travel story of a visit to Madrid and a 100km hike from Porto, Portugal to the border spain along the Camino Portugues."
+summary = "A short travel story of a visit to Madrid and a 100km hike from Porto, Portugal to the border of spain along the Camino Portugues."
 tags = ["travel-story"]
 showLogo = true
 logo = "/imgs/2019-madrid/21.jpg"
