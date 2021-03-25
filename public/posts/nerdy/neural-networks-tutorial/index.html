@@ -54,102 +54,24 @@
           <div class="mdl-grid mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
-              
-
-<p>Artificial Neural Networks (ANNs) are <em>the</em> hype in Computer Science, and I have jumped on the bandwagon.
+              <p>Artificial Neural Networks (ANNs) are <em>the</em> hype in Computer Science, and I have jumped on the bandwagon.
 I will surely write about how I want to apply ANNs to the field of communication networks in some later post, but for now I want to present what I have gathered about these lovely little thingies, and show it in a way that would have been very useful to me when I first started looking into ANNs:</p>
-
 <p><strong>I will showcase a brief, hands-on example of how ANNs work, and provide some TensorFlow / Keras code to back up my claims.</strong></p>
-
 <p>The examples are based on <a href="https://www.coursera.org/learn/machine-learning/home/welcome"><strong>Andrew Ng&rsquo;s course on Machine Learning on coursera.org</strong></a> - I can certainly recommend this course. The Python code is written by me, and uses <code>tensorflor v1.14</code> and its built-in Keras library.</p>
-
 <p>To keep things short, I won&rsquo;t introduce everything about ANNs; you can easily find info on this on thousands of other sites, online courses and books.
 Instead, the practical example of <em>learning logic operators through ANNs</em> from the above-mentioned online course is given.</p>
-
 <h1 id="learning-the-logical-and">Learning the logical <code>AND</code></h1>
-
 <p>You probably know the <code>AND</code> operator. Its truth table fully defines its function (output 1 only if both inputs are 1):</p>
-
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-  <thead>
-    <tr>
-      <th>x1</th>
-      <th>x2</th>
-      <th>x1 AND x2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-    </tr>
-  </tbody>
-</table>
-
+<!-- raw HTML omitted -->
 <p>We can approximate the <code>AND</code> function with a single-layer Neural Network. Learning the truth table above for a number of epochs, it would learn the following weights:
-<img src="/imgs/neural-network-tutorial/ann_AND.png" alt="Neural Network" /></p>
-
+<img src="/imgs/neural-network-tutorial/ann_AND.png" alt="Neural Network"></p>
 <p>and by setting the activation function as the <em>Sigmoid function</em>
 $$ g(z) = \frac{1}{1 + e^{-\Theta^T z}} $$
 the ANN is capable of learning the <code>AND</code> function, as its prediction becomes
 $$ h_\theta(x) = g(-30 + 20x_1 + 20x_2) $$
 which leads to</p>
-
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-  <thead>
-    <tr>
-      <th>x1</th>
-      <th>x2</th>
-      <th>x1 AND x2</th>
-      <th>prediction</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>g(-30) ≈ 0</td>
-    </tr>
-    <tr>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>g(-10) ≈ 0</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>g(-10) ≈ 0</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>g(10) ≈ 1</td>
-    </tr>
-  </tbody>
-</table>
-
+<!-- raw HTML omitted -->
 <h2 id="and-now-in-python">And now in Python</h2>
-
 <pre><code>import tensorflow.compat.v1 as tf
 from tensorflow.keras import layers
 import numpy as np
@@ -197,10 +119,7 @@ if __name__ == &quot;__main__&quot;:
 	for i in range(predictions.size):		
 		print(str(data_AND[0][i]) + &quot; -&gt; &quot; + str(predictions[i][0]) + &quot; ≈ &quot; + str(round(predictions[i][0])))	
 	print()
-</code></pre>
-
-<p>which outputs</p>
-
+</code></pre><p>which outputs</p>
 <pre><code>Logical AND ANN:
 ================
 Learned weights are n_1,1_0=3.8320987 n_1,2_0=3.8320732 b_1,0=-5.8527803 
@@ -209,11 +128,8 @@ Final loss is 0.012041996
 (0, 1) -&gt; 0.117045894 ≈ 0.0
 (1, 0) -&gt; 0.11704853 ≈ 0.0
 (1, 1) -&gt; 0.85953003 ≈ 1.0
-</code></pre>
-
-<p>We can see that instead of learning the weights -30, 20, 20 it learns -5.8, 3.8, 3.8. The <em>relations</em> are the same though
+</code></pre><p>We can see that instead of learning the weights -30, 20, 20 it learns -5.8, 3.8, 3.8. The <em>relations</em> are the same though
 $$\frac{-30}{20} = -1.5 \approx{} \frac{-5.8}{3.8} = -1.53$$</p>
-
 <p>This concludes this very brief introduction. The practical example of the <code>AND</code> function seemed intuitive to me. All an ANN does is adapt its weights until the loss (prediction - target) is adequately small. Since the Sigmoid function is non-linear, the ANN can approximate non-linear functions. And Keras gives us a way of implementing this in very few lines of code. :)</p>
 
             </div>

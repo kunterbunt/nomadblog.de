@@ -48,49 +48,51 @@
           <div class="mdl-grid mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
-              <p>I came across a situation where I had to <code>ssh</code> into my personal computer from a remote server. Most of the time, you don&rsquo;t want to do this. There&rsquo;s <em>botnets</em> and other <em>evil-doers</em> out there that try to break into easily accessible machines, and a password-protected SSH connection is easily broken into.<br />
+              <p>I came across a situation where I had to <code>ssh</code> into my personal computer from a remote server. Most of the time, you don&rsquo;t want to do this. There&rsquo;s <em>botnets</em> and other <em>evil-doers</em> out there that try to break into easily accessible machines, and a password-protected SSH connection is easily broken into.<br>
 <em>So don&rsquo;t do this unless you really need to!</em></p>
-
 <p>Okay, so you really need to. What do we need to do?</p>
-
 <ol>
-<li><em>Tell your router to forward incoming transmissions for your <code>SSH port</code> to your machine.</em><br />
+<li><em>Tell your router to forward incoming transmissions for your <code>SSH port</code> to your machine.</em><br>
 The specific procedure depends on your router and I&rsquo;ll leave it to you to find out how to do it. What&rsquo;s important, though, is that you should <strong>change the default port</strong>. Botnets, script kiddies and everybody else that wants to break into your system will try the default port <code>22</code> first. If that doesn&rsquo;t work, some might move on. Others might try more ports. Make them work for the right port, choose something random and large, in the <code>10000 to 64000</code> range. <a href="https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers">This is a list of used ports, so pick one that&rsquo;s not on this list!</a></li>
-<li><em>Start your SSH daemon</em><br />
-At least on my <code>arch linux</code> system, the daemon that listens for incoming connections is not enabled by default.<br />
-You have two choices:<br />
-1) <code>start</code> it with <code>sudo systemctl start sshd.service</code>. An instance will be running until you restart your PC. If you only occasionally want to access your machine from a remote server, then <strong>this is the safer way</strong>.<br />
-2) <code>enable</code> it with <code>sudo systemctl enable sshd.service</code>. This will auto-start the daemon upon boot, too.</li>
-<li><em>Tell SSH to listen on your chosen port</em><br />
-Open up your <strong><code>/etc/ssh/sshd_config</code></strong> file. The idea here is that many options are present in the file and set to their default values, <em>and they&rsquo;re commented out</em>. So, to change them, <em>uncomment</em> them by removing the leading <code>#</code> and then you can change their default values.<br />
-Fine the line for <code>#Port 22</code> and change it to <code>Port &lt;your port number&gt;</code>.</li>
-<li><em>Disable root login</em><br />
-For the sake of completeness, find the line that starts with <code>#PermitRootLogin</code> and change it to <code>PermitRootLogin no</code>.</li>
-<li><em>Disable password authentication</em><br />
-All passwords are evil if you have the possibility of using <em>public key authentication</em>. So find the line <code>#PasswordAuthentication yes</code> and change it to <code>PasswordAuthentication no</code>.</li>
-<li><em>Enable public key authentication</em><br />
-You kinda need one way of getting in, right? <strong>This should be enabled by default</strong> at the time of writing, but check anyway: <code>#PubkeyAuthentication yes</code> is the magic line. If you find it, leave it, it&rsquo;s the default. Or remove the <code>#</code>, whatever.</li>
-<li><em>Generate a public/private key pair</em><br />
-<strong>On the remote server</strong> generate a key pair with <code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code>. Follow the prompts, set a password.<br />
-Now start an <code>ssh-agent</code>: <code>eval &quot;$(ssh-agent -s)&quot;</code>.<br />
-And add the key to the agent, this way you don&rsquo;t have to type in your key&rsquo;s password every time you use it: <code>ssh-add ~/.ssh/&lt;your private key file&gt;</code>.</li>
-<li><em>Tell your system to allow this key</em><br />
-<strong>On your home system</strong> open <strong><code>~/.ssh/authorized_keys</code></strong> (create it if it doesn&rsquo;t exist) and add the content of your <strong>remote system&rsquo;s <code>~/.ssh/&lt;your public key file&gt;</code></strong>. Just copy the entire content, it should be on one line and contain lots of random characters.</li>
-<li><em>Restrict this key to a particular IP address</em><br />
-Another nice security measure. In your <strong>home system&rsquo;s <code>~/.ssh/authorized_keys</code></strong> (the one you just edited), prepend to the line from last step this: <code>from=&quot;1.2.3.4&quot;</code> where you of course replace the IP with your remote server&rsquo;s IP.</li>
-<li><em>Install fail2ban</em><br />
-<code>fail2ban</code> is a cool tool that automatically blocks IP addresses that seem suspicious by trying too many times to get into your system unsuccessfully. This would be your last line of defense. All you need to do is to install and enable it. On <code>arch</code> it&rsquo;d be: <code>sudo pacman -S fail2ban</code> and then <code>sudo systemctl enable fail2ban.service</code>.</li>
-<li><em>Create a new user with limited rights</em><br />
-Create a new group: <code>sudo groupadd sshusergroup</code><br />
-Add a new user: <code>sudo useradd -m -g sshusergroup -s /bin/bash sshuser</code><br />
-Restrict SSH to allow only this user: add the line <code>AllowUsers sshuser</code> to <strong><code>/etc/ssh/sshd_config</code></strong></li>
-<li><em>Restart your daemon</em><br />
-To load all these settings, reload <code>sshd</code> with <code>sudo systemctl restart sshd.service</code>.</li>
 </ol>
-
-<p>You could call this a very <strong>paranoid approach</strong>. Just the way I like it, because you reaaally don&rsquo;t want random people on your personal computer. I can&rsquo;t think of a way of breaking into this system via SSH anymore.<br />
+<ul>
+<li><em>Start your SSH daemon</em><br>
+At least on my <code>arch linux</code> system, the daemon that listens for incoming connections is not enabled by default.<br>
+You have two choices:</li>
+</ul>
+<ol>
+<li><code>start</code> it with <code>sudo systemctl start sshd.service</code>. An instance will be running until you restart your PC. If you only occasionally want to access your machine from a remote server, then <strong>this is the safer way</strong>.</li>
+<li><code>enable</code> it with <code>sudo systemctl enable sshd.service</code>. This will auto-start the daemon upon boot, too.</li>
+</ol>
+<ul>
+<li><em>Tell SSH to listen on your chosen port</em><br>
+Open up your <strong><code>/etc/ssh/sshd_config</code></strong> file. The idea here is that many options are present in the file and set to their default values, <em>and they&rsquo;re commented out</em>. So, to change them, <em>uncomment</em> them by removing the leading <code>#</code> and then you can change their default values.<br>
+Fine the line for <code>#Port 22</code> and change it to <code>Port &lt;your port number&gt;</code>.</li>
+<li><em>Disable root login</em><br>
+For the sake of completeness, find the line that starts with <code>#PermitRootLogin</code> and change it to <code>PermitRootLogin no</code>.</li>
+<li><em>Disable password authentication</em><br>
+All passwords are evil if you have the possibility of using <em>public key authentication</em>. So find the line <code>#PasswordAuthentication yes</code> and change it to <code>PasswordAuthentication no</code>.</li>
+<li><em>Enable public key authentication</em><br>
+You kinda need one way of getting in, right? <strong>This should be enabled by default</strong> at the time of writing, but check anyway: <code>#PubkeyAuthentication yes</code> is the magic line. If you find it, leave it, it&rsquo;s the default. Or remove the <code>#</code>, whatever.</li>
+<li><em>Generate a public/private key pair</em><br>
+<strong>On the remote server</strong> generate a key pair with <code>ssh-keygen -t rsa -b 4096 -C &quot;your_email@example.com&quot;</code>. Follow the prompts, set a password.<br>
+Now start an <code>ssh-agent</code>: <code>eval &quot;$(ssh-agent -s)&quot;</code>.<br>
+And add the key to the agent, this way you don&rsquo;t have to type in your key&rsquo;s password every time you use it: <code>ssh-add ~/.ssh/&lt;your private key file&gt;</code>.</li>
+<li><em>Tell your system to allow this key</em><br>
+<strong>On your home system</strong> open <strong><code>~/.ssh/authorized_keys</code></strong> (create it if it doesn&rsquo;t exist) and add the content of your <strong>remote system&rsquo;s <code>~/.ssh/&lt;your public key file&gt;</code></strong>. Just copy the entire content, it should be on one line and contain lots of random characters.</li>
+<li><em>Restrict this key to a particular IP address</em><br>
+Another nice security measure. In your <strong>home system&rsquo;s <code>~/.ssh/authorized_keys</code></strong> (the one you just edited), prepend to the line from last step this: <code>from=&quot;1.2.3.4&quot;</code> where you of course replace the IP with your remote server&rsquo;s IP.</li>
+<li><em>Install fail2ban</em><br>
+<code>fail2ban</code> is a cool tool that automatically blocks IP addresses that seem suspicious by trying too many times to get into your system unsuccessfully. This would be your last line of defense. All you need to do is to install and enable it. On <code>arch</code> it&rsquo;d be: <code>sudo pacman -S fail2ban</code> and then <code>sudo systemctl enable fail2ban.service</code>.</li>
+<li><em>Create a new user with limited rights</em><br>
+Create a new group: <code>sudo groupadd sshusergroup</code><br>
+Add a new user: <code>sudo useradd -m -g sshusergroup -s /bin/bash sshuser</code><br>
+Restrict SSH to allow only this user: add the line <code>AllowUsers sshuser</code> to <strong><code>/etc/ssh/sshd_config</code></strong></li>
+<li><em>Restart your daemon</em><br>
+To load all these settings, reload <code>sshd</code> with <code>sudo systemctl restart sshd.service</code>.</li>
+</ul>
+<p>You could call this a very <strong>paranoid approach</strong>. Just the way I like it, because you reaaally don&rsquo;t want random people on your personal computer. I can&rsquo;t think of a way of breaking into this system via SSH anymore.<br>
 Let&rsquo;s recap: The SSH daemon is not always running, only when you need it (if you didn&rsquo;t enable it). If it is, then it only allows key authentication, which is pretty safe. Also it only allows this if it comes from the single IP you specified. And if someone is still able to try different keys, then if he tries too many, he&rsquo;s banned by <code>fail2ban</code>. And if all security measures fail, then he can only login to the <code>sshuser</code> user, which is part of no groups to speak of, has <em>no sudo rights</em> and can&rsquo;t really do a thang outside of his home directory.</p>
-
 <p>On the <strong>remote server</strong> you can now ssh into your machine with <code>ssh -p &lt;your port&gt; sshuser@&lt;your IP&gt;</code>.</p>
 
             </div>

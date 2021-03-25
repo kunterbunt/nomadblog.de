@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About on no mad blog</title>
@@ -6,19 +6,15 @@
     <description>Recent content in About on no mad blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Mar 2019 13:54:07 +0100</lastBuildDate>
-    
-	<atom:link href="https://nomadblog.de/about/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 03 Mar 2019 13:54:07 +0100</lastBuildDate><atom:link href="https://nomadblog.de/about/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Sebastian</title>
       <link>https://nomadblog.de/about/seba/</link>
       <pubDate>Sun, 03 Mar 2019 13:54:07 +0100</pubDate>
       
       <guid>https://nomadblog.de/about/seba/</guid>
-      <description>Hi, I&amp;rsquo;m Sebastian. I live in the beautiful port city of Hamburg, in northern Germany.
-I have come to love the traveler&amp;rsquo;s life when I did my first big trip at 19 when I went to Australia for a travel &amp;amp; work stay of 9 months. We would work and save money for a car, then drive that car some several thousand kilometers south and enjoy every moment of it.</description>
+      <description>Since then I&amp;rsquo;ve made it a prime bucket list item to see as much of this world as I can; and hopefully do an indefinite trip. This blog documents my journey to achieving this life goal. :)
+I am a research assistant by trade, and study wireless communication systems - especially &amp;ldquo;Cognitive Radio Networks&amp;rdquo; that intelligently interact with their environment. You may find some nerdy tinkering / programming / Machine Learning stuff here from time to time.</description>
     </item>
     
   </channel>

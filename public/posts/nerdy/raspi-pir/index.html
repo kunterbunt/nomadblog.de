@@ -51,10 +51,8 @@
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
               <p>I am working on a <a href="https://www.raspberrypi.org/blog/magic-mirror/">Magic Mirror</a>: that&rsquo;s an old LCD display behind a two-way mirror. The mirror shows your reflection when you look at it, but all light coming from behind it passes through - so stuff displayed on the LCD appears on the mirror. A Raspberry Pi 3 controls what is shown using <a href="https://magicmirror.builders/">this open source modular smart mirror platform</a>.</p>
-
 <p>Of course I don&rsquo;t want the display to be always on - that&rsquo;d be bad for my electricity bill. Instead I want to detect if a person is standing in front of the mirror and only then turn it on.
 For this I&rsquo;m using a <a href="https://en.wikipedia.org/wiki/Passive_infrared_sensor">passive infrared (PIR) sensor</a> which connects to three GPIO pins on the raspi.</p>
-
 <p>Some Python then controls the logic:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">MotionSensor</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -82,21 +80,19 @@ For this I&rsquo;m using a <a href="https://en.wikipedia.org/wiki/Passive_infrar
 		<span class="n">currentlyOn</span> <span class="o">=</span> <span class="bp">True</span>
 	<span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s2">&#34;Stopping.&#34;</span></code></pre></div>
-<p>In a nutshell: the first <code>if</code> checks whether more than <code>stayAliveTime</code> many seconds have passed since the last movement was registered, and turns off the display if enough time has passed &amp;&amp; and the display is on &amp;&amp; there&rsquo;s no motion right now.<br />
+    <span class="k">print</span> <span class="s2">&#34;Stopping.&#34;</span>
+</code></pre></div><p>In a nutshell: the first <code>if</code> checks whether more than <code>stayAliveTime</code> many seconds have passed since the last movement was registered, and turns off the display if enough time has passed &amp;&amp; and the display is on &amp;&amp; there&rsquo;s no motion right now. <br>
 The second <code>if</code> covers the other case and checks for motion. Any motion updates the point in time <code>lastTimeActivated</code> where the last motion was detected: this way the display stays on if a person keeps moving in front of it. If it&rsquo;s currently off, then it&rsquo;ll also turn on.</p>
-
 <p>You&rsquo;ll want to install the <code>gpiozero</code> package and possibly some dependencies of it.</p>
-
 <p>The <code>/home/pi/bin/turn-screen</code> script is quite simple:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
-</span><span class="cp"></span><span class="k">if</span> <span class="o">((</span> <span class="nv">$#</span> &lt; <span class="m">1</span><span class="o">))</span><span class="p">;</span>
+</span><span class="cp"></span><span class="k">if</span> <span class="o">((</span> <span class="nv">$#</span> &lt; 1<span class="o">))</span><span class="p">;</span>
 <span class="k">then</span>
 	<span class="nb">echo</span> <span class="s2">&#34;Pass &#39;0&#39; for &#39;off&#39; and &#39;1&#39; for &#39;on&#39;!&#34;</span>
 	<span class="nb">exit</span>
 <span class="k">fi</span>
-vcgencmd display_power <span class="nv">$1</span></code></pre></div>
-<p>and that&rsquo;ll do it!</p>
+vcgencmd display_power <span class="nv">$1</span>
+</code></pre></div><p>and that&rsquo;ll do it!</p>
 
             </div>
             <div class="mdl-layout-spacer"></div>

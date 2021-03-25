@@ -48,13 +48,10 @@
           <div class="mdl-grid mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
-              <p><code>nginx</code> is an open-source HTTP server.<br />
+              <p><code>nginx</code> is an open-source HTTP server.<br>
 Let&rsquo;s say you&rsquo;re running a server with <code>nginx</code> and you have two domains <code>domain1.com</code> and <code>domain2.com</code>. You also have the HTML of two websites sitting at <code>~/web/domain1.com/</code> and <code>~/web/domain2.com/</code>. And now, of course, you want visitors that go to <code>domain1.com</code> to be directed to the website at <code>~/web/domain1.com/</code> and in an analog way for the other domain.</p>
-
 <p>For this you make the sites <code>available</code> by creating their configuration files</p>
-
 <p><strong><code>/etc/nginx/sites-available/domain1.de</code></strong></p>
-
 <pre><code>server {
 	listen 80;
 	listen [::]:80;
@@ -68,26 +65,16 @@ Let&rsquo;s say you&rsquo;re running a server with <code>nginx</code> and you ha
 		try_files $uri $uri/ =404;
 	}
 }
-</code></pre>
-
-<p>Substitute all <code>domain1.de</code> with <code>domain2.de</code> and that&rsquo;s your <strong><code>/etc/nginx/sites-available/domain2.de</code></strong>.</p>
-
+</code></pre><p>Substitute all <code>domain1.de</code> with <code>domain2.de</code> and that&rsquo;s your <strong><code>/etc/nginx/sites-available/domain2.de</code></strong>.</p>
 <p>These sites are now <em>available</em>, but not <em>enabled</em> yet. The idea is to configure everything in <strong><code>/etc/nginx/sites-available/&lt;file&gt;</code></strong>, and to then have symbolic links in <strong><code>/etc/nginx/sites-enabled/</code></strong> that point to the configuration files you want enabled.</p>
-
-<p>So <code>enable</code> the sites:<br />
+<p>So <code>enable</code> the sites:<br>
 <code>sudo ln -s /etc/nginx/sites-available/domain1.de /etc/nginx/sites-enabled/domain1.de</code></p>
-
 <p><code>sudo ln -s /etc/nginx/sites-available/domain2.de /etc/nginx/sites-enabled/domain2.de</code></p>
-
 <p>Make sure your symbolic links work by issuing <code>ls -l /etc/nginx/sites-enabled/</code> which should show</p>
-
 <pre><code>total 0
 lrwxrwxrwx 1 root root 44 Mar 23 19:10 domain1.de -&gt; /etc/nginx/sites-available/domain1.de
 lrwxrwxrwx 1 root root 41 Mar 23 19:15 domain2.de -&gt; /etc/nginx/sites-available/domain2.de
-</code></pre>
-
-<p>Assuming <code>Ubuntu</code>, restart nginx: <code>sudo service nginx restart</code>.</p>
-
+</code></pre><p>Assuming <code>Ubuntu</code>, restart nginx: <code>sudo service nginx restart</code>.</p>
 <p>Alright, you&rsquo;re good to go!</p>
 
             </div>

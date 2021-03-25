@@ -5,6 +5,7 @@ pluralizeListTitles = false
 PygmentsCodeFences = true
 pygmentsuseclasses = true
 ignoreFiles = [ "/css/.sass-cache" ]
+theme = "nomadblog"
 
 [Taxonomies]
 tag = "tags"

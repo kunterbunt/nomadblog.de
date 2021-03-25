@@ -3,12 +3,12 @@
     <div class="mdl-cell mdl-cell--6-col">
       <i class="material-icons">&#xE5C5;</i>
       <div class="vertical-line vertical-line--50px"></div>
-      {{ range first 7 .Data.Pages }}
-        {{ if (ne .Section "about") }}
+      {{ range first 7 .Site.RegularPages }}
+        {{ if (eq .Section "posts") }}
           {{ partial "post.html" . }}
         {{ end }}
       {{ end }}
-      {{ if ge (len .Data.Pages) 8 }} <!-- if there are >=8 posts -->
+      {{ if ge (len .Site.Pages) 8 }} <!-- if there are >=8 posts -->
       <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect">
         SHOW ME MORE
       </a>

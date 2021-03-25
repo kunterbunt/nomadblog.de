@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>no mad blog</title>
@@ -6,10 +6,15 @@
     <description>Recent content on no mad blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Aug 2019 16:58:16 +0200</lastBuildDate>
-    
-	<atom:link href="https://nomadblog.de/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Thu, 25 Mar 2021 14:55:21 +0100</lastBuildDate><atom:link href="https://nomadblog.de/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Open Source Webshop</title>
+      <link>https://nomadblog.de/posts/nerdy/webshop/</link>
+      <pubDate>Thu, 25 Mar 2021 14:55:21 +0100</pubDate>
+      
+      <guid>https://nomadblog.de/posts/nerdy/webshop/</guid>
+      <description>What&amp;rsquo;s this about? It&amp;rsquo;s been a while, but I&amp;rsquo;ve not been idle. :) In fact, we&amp;rsquo;ve made some pretty awesome progress on the Slow Food front. I believe it&amp;rsquo;s the first post about Slow Food, so let me introduce it briefly: Slow Food is an NGO that fights towards sustainable food systems. I love both food and good causes, so I&amp;rsquo;ve been engaged for quite some years now&amp;hellip; six I believe?</description>
+    </item>
     
     <item>
       <title>Neural Networks Tutorial</title>
@@ -35,8 +40,8 @@
       <pubDate>Sun, 03 Mar 2019 13:54:07 +0100</pubDate>
       
       <guid>https://nomadblog.de/about/seba/</guid>
-      <description>Hi, I&amp;rsquo;m Sebastian. I live in the beautiful port city of Hamburg, in northern Germany.
-I have come to love the traveler&amp;rsquo;s life when I did my first big trip at 19 when I went to Australia for a travel &amp;amp; work stay of 9 months. We would work and save money for a car, then drive that car some several thousand kilometers south and enjoy every moment of it.</description>
+      <description>Since then I&amp;rsquo;ve made it a prime bucket list item to see as much of this world as I can; and hopefully do an indefinite trip. This blog documents my journey to achieving this life goal. :)
+I am a research assistant by trade, and study wireless communication systems - especially &amp;ldquo;Cognitive Radio Networks&amp;rdquo; that intelligently interact with their environment. You may find some nerdy tinkering / programming / Machine Learning stuff here from time to time.</description>
     </item>
     
     <item>
@@ -93,7 +98,7 @@ I have come to love the traveler&amp;rsquo;s life when I did my first big trip a
       <description>I had an annoying problem: for the simulator I use for research I needed a specific library, as the simulator uses it.
 This specific library osgearth is available in the Arch Linux&amp;rsquo;s AUR, but the package maintainer put a wrong MD5 Checksum into the PKGBUILD. Let&amp;rsquo;s say we trust the maintainer and don&amp;rsquo;t believe someone tinkered with the files. What do you do?
 Go to an arbitrary directory
-cd ~/Download mkdir osgearth cd osgearth  Download the Snapshot from the AUR which should contain the PKGBUILD; extract it from the archive file.</description>
+cd ~/Download mkdir osgearth cd osgearth Download the Snapshot from the AUR which should contain the PKGBUILD; extract it from the archive file.</description>
     </item>
     
     <item>

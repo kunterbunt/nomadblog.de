@@ -49,25 +49,23 @@
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
               <p><code>Device2Device (D2D) Mode Selection</code> is the process of deciding whether a user device should communicate directly (<code>D2D Mode</code>) or via the eNodeB base station (<code>Infrastructure Mode</code>). A number of metrics can be taken into account for this decision, such as the interference generated that will affect other devices or the expected datarate of each mode. Once a researcher has come up with an idea, they will want to evaluate it. Using the <a href="https://omnetpp.org/">OMNeT++ network simulator</a> as a starting point, and adding the <a href="http://simulte.com/">SIMUlte framework</a> on top enables one to simulate LTE networks.</p>
-
 <p>To implement your own mode selection algorithm, follow the following steps. I have implemented a mode selection that simply forces a device to transmit via D2D if it is capable:</p>
-
 <ol>
 <li>Add your implementation files to <code>&lt;simulte dir&gt;/src/stack/d2dModeSelection/d2dModeSelectionForcedD2D/D2DModeSelectionFOrcedD2D.{cc, h}</code>.</li>
-
-<li><p>To <code>.../d2dModeSelection/D2DModeSelection.ned</code> add</p>
-
+</ol>
+<ul>
+<li>
+<p>To <code>.../d2dModeSelection/D2DModeSelection.ned</code> add</p>
 <pre><code>simple D2DModeSelectionForcedD2D extends D2DModeSelectionBase {
     parameters:
         @class(&quot;D2DModeSelectionForcedD2D&quot;);    
 }
 </code></pre></li>
-</ol>
-
-<ul>
-<li>The <code>.ned</code> tells the simulator to look for a <code>D2DModeSelectionForcedD2D</code> class. In <code>D2DModeSelectionForcedD2D.cc</code> put <code>Define_Module(D2DModeSelectionForcedD2D);</code> to link them together.</li>
-
-<li><p>Now all that&rsquo;s really left is to implement <code>doModeSelection()</code>. Consider my implementation a starting point:</p>
+<li>
+<p>The <code>.ned</code> tells the simulator to look for a <code>D2DModeSelectionForcedD2D</code> class. In <code>D2DModeSelectionForcedD2D.cc</code> put <code>Define_Module(D2DModeSelectionForcedD2D);</code> to link them together.</p>
+</li>
+<li>
+<p>Now all that&rsquo;s really left is to implement <code>doModeSelection()</code>. Consider my implementation a starting point:</p>
 <div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="kt">void</span> <span class="n">D2DModeSelectionForcedD2D</span><span class="o">::</span><span class="n">doModeSelection</span><span class="p">()</span> <span class="p">{</span>
 <span class="n">EV</span> <span class="o">&lt;&lt;</span> <span class="n">NOW</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; D2DModeSelectionForcedD2D::doModeSelection for &#34;</span> <span class="o">&lt;&lt;</span> <span class="n">peeringModeMap_</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; nodes.&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
 
@@ -116,7 +114,7 @@
 
         <span class="k">if</span> <span class="p">(</span><span class="n">newMode</span> <span class="o">!=</span> <span class="n">oldMode</span><span class="p">)</span> <span class="p">{</span>
             <span class="c1">// Mark this flow as switching modes.
-</span><span class="c1"></span>            <span class="n">FlowId</span> <span class="n">p</span><span class="p">(</span><span class="n">srcId</span><span class="p">,</span> <span class="n">dstId</span><span class="p">);</span>
+</span><span class="c1"></span>            <span class="n">FlowId</span> <span class="nf">p</span><span class="p">(</span><span class="n">srcId</span><span class="p">,</span> <span class="n">dstId</span><span class="p">);</span>
             <span class="n">FlowModeInfo</span> <span class="n">info</span><span class="p">;</span>
             <span class="n">info</span><span class="p">.</span><span class="n">flow</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
             <span class="n">info</span><span class="p">.</span><span class="n">oldMode</span> <span class="o">=</span> <span class="n">oldMode</span><span class="p">;</span>

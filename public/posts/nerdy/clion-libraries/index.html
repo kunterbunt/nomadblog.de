@@ -48,14 +48,11 @@
           <div class="mdl-grid mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
-              <p><a href="https://www.jetbrains.com/clion/">CLion</a> is my preferred C++ IDE. For my Master&rsquo;s thesis, today I had to implement the calculation of <a href="https://en.wikipedia.org/wiki/Shapley_value">Shapley&rsquo;s value</a> - a concept from game theory.<br />
+              <p><a href="https://www.jetbrains.com/clion/">CLion</a> is my preferred C++ IDE. For my Master&rsquo;s thesis, today I had to implement the calculation of <a href="https://en.wikipedia.org/wiki/Shapley_value">Shapley&rsquo;s value</a> - a concept from game theory.<br>
 I thought, okay, let&rsquo;s do this properly. I&rsquo;ll be using the calculation inside a simulator, but I want to implement it outside the scope of this huge code framework, so that I can run easily unit-test it. So I&rsquo;ll use CLion and let it compile a library. Later in the simulator I can just link the library in. My unit testing binary also just links the library. So if later I fix some bugs or add some functionality, I can easily run my tests to see if I broke anything, and then let it run on my simulator, without the hassle of copying over the code.</p>
-
-<p>CLion uses CMake to compile things. CMake is a wrapper for Makefiles. It has its own language and generates the Makefiles for you - it&rsquo;s a bit like SASS for CSS.<br />
+<p>CLion uses CMake to compile things. CMake is a wrapper for Makefiles. It has its own language and generates the Makefiles for you - it&rsquo;s a bit like SASS for CSS.<br>
 Let&rsquo;s see how to set up this whole thing in CLion.</p>
-
 <p>Create a new project which I&rsquo;ll call <code>shapley</code>. <code>src/shapley.{cpp,h}</code> will describe the library functionality. <code>src/tests/unittests.cpp</code> will describe a binary that runs the unit tests. So the initial folder structure is this:</p>
-
 <pre><code>src/
   lib/
     CMakeLists.txt
@@ -65,12 +62,8 @@ Let&rsquo;s see how to set up this whole thing in CLion.</p>
     CMakeLists.txt
     unittests.cpp  
 CMakeLists.txt
-</code></pre>
-
-<p>Note the three <code>CMakeList.txt</code>&rsquo;s. The one inside <code>src/tests/</code> is for compiling just the unit tests. <code>src/lib/CMakeLists.txt</code> handles the library compilation. The top one includes both others and handles global configuration rules.</p>
-
+</code></pre><p>Note the three <code>CMakeList.txt</code>&rsquo;s. The one inside <code>src/tests/</code> is for compiling just the unit tests. <code>src/lib/CMakeLists.txt</code> handles the library compilation. The top one includes both others and handles global configuration rules.</p>
 <p>First the <strong><code>src/tests/CMakeLists.txt</code>:</strong></p>
-
 <pre><code>cmake_minimum_required(VERSION 3.8)
 set(CMAKE_CXX_STANDARD 11)
 project(shapley-unittests)
@@ -87,14 +80,10 @@ set(SOURCE_FILES_UNITTESTS
 set(CMAKE_BUILD_TYPE Debug)
 add_executable(unittests ${SOURCE_FILES_UNITTESTS})
 target_link_libraries(unittests shapley :libcppunit.so)
-</code></pre>
-
-<p><code>include_directories(..)</code> includes the <code>src/</code> directory so that we can include the library header as <code>#include &quot;shapley.h&quot;</code>.<br />
-<code>set(SOURCE_FILES_UNITTESTS ...)</code> sets this project&rsquo;s source files. Note that this is only the <code>unittests.cpp</code>.<br />
+</code></pre><p><code>include_directories(..)</code> includes the <code>src/</code> directory so that we can include the library header as <code>#include &quot;shapley.h&quot;</code>.<br>
+<code>set(SOURCE_FILES_UNITTESTS ...)</code> sets this project&rsquo;s source files. Note that this is only the <code>unittests.cpp</code>.<br>
 <code>target_link_libraries(unittests shapley :libcppunit.so)</code> links both the <code>libshapley.a</code> and the <code>libcppunit.so</code>.</p>
-
 <p>Secondly <strong><code>src/lib/CMakeLists.txt</code>:</strong></p>
-
 <pre><code>cmake_minimum_required(VERSION 3.8)
 set(CMAKE_CXX_STANDARD 11)
 project(shapley-lib)
@@ -106,10 +95,7 @@ set(SOURCE_FILES_SHAPLEY-LIB
         shapley.h)
 
 add_library(shapley ${SOURCE_FILES_SHAPLEY-LIB})
-</code></pre>
-
-<p>Finally the <strong>top <code>CMakeLists.txt</code>:</strong></p>
-
+</code></pre><p>Finally the <strong>top <code>CMakeLists.txt</code>:</strong></p>
 <pre><code>cmake_minimum_required(VERSION 3.8)
 project(shapley)
 
@@ -120,13 +106,9 @@ add_subdirectory(src/lib)
 
 set_target_properties(unittests PROPERTIES RUNTIME_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/out/&quot;)
 set_target_properties(shapley PROPERTIES ARCHIVE_OUTPUT_DIRECTORY &quot;${CMAKE_BINARY_DIR}/out/&quot;)
-</code></pre>
-
-<p><code>add_subdirectory()</code> includes the other <code>CMakeLists.txt</code>s.<br />
+</code></pre><p><code>add_subdirectory()</code> includes the other <code>CMakeLists.txt</code>s.<br>
 The <code>set_target_properties</code> simply set the output directory.</p>
-
 <p>This covers the CMake setup. Now your <code>src/tests/unittests.cpp</code> can simply do this:</p>
-
 <pre><code>#include &lt;iostream&gt;
 #include &quot;shapley.h&quot;
 
@@ -135,9 +117,7 @@ int main(int argc, const char *argv[]) {
 	std::cout &lt;&lt; &quot;Hello World&quot; &lt;&lt; std::endl;
 	return 0;
 }
-</code></pre>
-
-<p>and define <code>hello()</code> in your library, and it&rsquo;ll work.</p>
+</code></pre><p>and define <code>hello()</code> in your library, and it&rsquo;ll work.</p>
 
             </div>
             <div class="mdl-layout-spacer"></div>

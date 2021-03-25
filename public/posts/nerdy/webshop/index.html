@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<head>
+  <title>no mad blog</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/imgs/icons/favicon.png">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-deep_orange.min.css" />
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <link rel="stylesheet" href="/css/article.css" type="text/css">
+  <link rel="stylesheet" href="/css/github.css" type="text/css">
+  
+  <script data-isso="//comments.nomadblog.de/"
+        src="//comments.nomadblog.de/js/embed.min.js"></script>
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <a href="#" onclick="history.go(-1)">
+        <button class="mdl-button mdl-js-button">
+          <i class="material-icons">arrow_back</i>
+        </button></a>
+        <a href=https://nomadblog.de/>
+          <span class="mdl-layout-title">no mad blog</span>
+        </a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <a href="/posts" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-cell--hide-phone">posts</a>
+        <i class="mdl-cell--hide-phone material-icons">keyboard_arrow_right</i>
+        <button class="mdl-button mdl-js-button">
+          <a class="mdl-cell--hide-phone"> Open Source Webshop</a>
+        </button>
+    </div>
+</header>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <article class="container--content">
+          <div class="mdl-grid mdl-grid--no-spacing">
+            
+            <div class="image logo mdl-cell mdl-cell--12-col" style="background-image: url(/imgs/logos/nerdy/webshop.jpg)"></div>
+            
+            <div class="mdl-cell mdl-cell--12-col">
+              
+              <h3 class="title text--centered">Open Source Webshop</h3>
+              
+            </div>
+          </div>
+          <div class="mdl-grid mdl-grid">
+            <div class="mdl-layout-spacer"></div>
+            <div class="content mdl-cell mdl-cell--5-col">
+              <h1 id="whats-this-about">What&rsquo;s this about?</h1>
+<p>It&rsquo;s been a while, but I&rsquo;ve not been idle. :)
+In fact, we&rsquo;ve made some pretty awesome progress on the Slow Food front.
+I believe it&rsquo;s the first post about Slow Food, so let me introduce it briefly: <a href="https://www.slowfood.com/">Slow Food</a> is an NGO that fights towards sustainable food systems.
+I love both food and good causes, so I&rsquo;ve been engaged for quite some years now&hellip; six I believe? Who knows.</p>
+<p>Anyway, one of the projects I&rsquo;ve been working on there has been a German version of the <a href="http://www.calendariumculinarium.com/">Calendarium Culinarium</a>, a seasonal calendar that shows local fruit and vegetables in a beautiful way.
+It&rsquo;s not intended for gardeners, it&rsquo;s more of a good-looking poster you hang in your kitchen for decoration.
+I think it looks very nice, and it also rakes in a good amount of money for the Swiss Slow Food Youth group, who came up with the idea years ago.</p>
+<p>So theses Swiss guys came over to a German meeting a couple of years ago, and said &ldquo;this was fun to do and it&rsquo;s a money-maker!&rdquo;.
+Well, NGOs tend to not have enough money (but then again, who does).
+And so a new project was born.
+Now, several years later, it has come to fruition.</p>
+<p>With the pandemic keeping us at home, we couldn&rsquo;t sell the fantastically-designed calendar (check it out <a href="https://calendariumculinarium.de">here</a>) at events as we had originally planned.
+Digitalization to the rescue - we needed an online shop.
+We could&rsquo;ve asked some prominent online shop to sell our calendar as well, but we were on a DIY track anyway - so we built our own.
+It has been running since December 2020, and early bugs have been resolved; it now runs bug-free for quite a while now.</p>
+<p>So: time to release it to the world!
+As a side-product of this project, we release the online shop under the <a href="https://choosealicense.com/licenses/gpl-3.0/">GPL-3.0 License</a>.
+Feel free to adapt the code to suit your needs, and don&rsquo;t hesitate to contact me to get support in setting it up.
+This post is dedicated to explaining how it works.</p>
+<h1 id="how-does-it-work">How does it work?</h1>
+<p>It is a Golang-based REST API.
+When running on a server, it expects HTTP requests at <code>/api/&lt;end&gt;</code>, and replies accordingly.
+For example, <code>GET</code> requests would fetch the products that are available, while <code>POST</code> requests place orders that are then saved in an <code>SQLite</code> database.</p>
+<ul>
+<li>The REST API Golang server is found <a href="https://github.com/kunterbunt/calendarium-server">here on GitHub</a></li>
+<li>The webshop frontend is found <a href="https://github.com/kunterbunt/website-calendarium-culinarium">here on GitHub</a></li>
+<li>All Docker-related files are found <a href="https://github.com/kunterbunt/calendarium-server-docker">here on GitHub</a></li>
+</ul>
+<h2 id="rest-api-docker-image">REST-API Docker Image</h2>
+<p>Nowadays you containerize things, and the <code>Dockerfile</code> for the REST API Server is very simple.
+Clone the <a href="https://github.com/kunterbunt/calendarium-server-docker">repo</a>, in which you&rsquo;ll find this <a href="https://github.com/kunterbunt/calendarium-server-docker/blob/master/Dockerfile"><code>Dockerfile</code></a>:</p>
+<pre><code>FROM golang:latest
+LABEL maintainer=&quot;Sebastian Lindner &lt;sebastian@slowfoodyouthh.de&gt;&quot;
+RUN mkdir -p /mnt/go/src/github.com/kunterbunt/calendarium-server
+RUN mkdir -p /mnt/db
+RUN mkdir -p /mnt/run
+CMD [&quot;/mnt/run/run.sh&quot;]
+</code></pre><p>Execute <code>docker build -t calendarium-shop .</code> in the same directory as the <code>Dockerfile</code>.
+A new Docker image named <code>calendarium-shop</code> is created, which is based off the original <code>golang</code> Docker image, has three directories added under <code>/mnt/</code> and will attempt to execute a script at <code>/mnt/run/run.sh</code> upon execution.
+This script <em>is not part of the image</em> as we provide it when we start the container.</p>
+<h2 id="rest-api-docker-container">REST-API Docker Container</h2>
+<p>We start the REST-API container using <code>docker-compose up</code>, which utilizes the <code>docker-compose.yml</code> file:</p>
+<pre><code>version: &quot;3&quot;
+services:
+  webshop-rest:
+    image: calendarium-shop:latest
+    container_name: &quot;calendarium-shop&quot;    
+    volumes:
+      - ./db:/mnt/db
+      - ./run:/mnt/run      
+    environment:
+      - BILLBEE_API_KEY=&quot;YOUR-API-KEY&quot; 
+      - BILLBEE_API_USERNAME=&quot;YOUR-API-USER&quot; 
+      - BILLBEE_API_PASSWORD=&quot;YOUR-API-PASSWORD&quot; 
+      - BILLBEE_API_URL=&quot;https://app.billbee.io/api/v1/orders?shopId=YOUR_SHOP_ID&quot; 
+      - SHOP_AUTH_USERNAME=&quot;YOUR-SHOP-ADMIN-USER&quot; 
+      - SHOP_AUTH_PASSWORD=&quot;YOUR-SHOP-ADMIN-PASSWORD&quot; 
+      - SHOP_FORWARD_TO_BILLBEE=1
+      - SHOP_ERR_EMAIL_FROM=&quot;YOUR-EMAIL-ADDRESS&quot; 
+      - SHOP_ERR_EMAIL_TO_FIRST=&quot;DESTINATION-EMAIL-1-UPON-ERROR&quot; 
+      - SHOP_ERR_EMAIL_TO_SECOND=&quot;DESTINATION-EMAIL-2-UPON-ERROR&quot; 
+      - SHOP_ERR_EMAIL_PASSWORD=&quot;YOUR-EMAIL-ACCOUNT-PASSWORD&quot; 
+      - SHOP_ERR_EMAIL_SMTP_HOST=&quot;YOUR-EMAIL-PROVIDER-SMTP-HOST&quot; 
+      - SHOP_ERR_EMAIL_SMTP_PORT=&quot;YOUR-EMAIL-PROVIDER-SMTP-PORT&quot;
+    restart: always 
+
+  webshop-nginx:
+    image: nginx:stable
+    container_name: &quot;calendarium-website&quot;
+    ports:
+      - 80:80    
+    volumes:
+      - /path/to/website-repo/public:/usr/share/nginx/html
+      - ./nginx/config/:/etc/nginx
+    restart: always
+</code></pre><ul>
+<li>We <strong>mount</strong> the local <code>db/</code> and <code>run/</code> directories into those we created in the Docker image.
+<ul>
+<li>The <code>db/</code> directory contains your <code>SQLite</code> database with all orders and such. It is auto-created by the REST API if non-existent. If you move your installation, just make sure to copy the database &ndash; this is also why we mount it, so that the database is not lost when the container is lost.</li>
+<li>The <code>run/</code> directory contains the startup script. More on this later.</li>
+</ul>
+</li>
+<li>We <strong>set</strong> a number of environment variables. These you need to adjust to your needs.
+<ul>
+<li>The <code>BILLBEE_API_*</code> variables are used for order forwarding. We forward orders to a company called <a href="https://www.billbee.io/">billbee</a>, which provides order management software. We auto-generate order confirmation emails, parcel stickers, track payments and all these things through billbee.
+<ul>
+<li>So you&rsquo;d need to setup an account with them to get this information.</li>
+<li>You can also disable this forwarding by setting <code>SHOP_FORWARD_TO_BILLBEE=0</code>.</li>
+</ul>
+</li>
+<li>The <code>SHOP_AUTH_*</code> variables refer to <code>basic auth</code> protection. The REST API allows you to <code>GET</code> all placed orders, which not everyone should be able to. Through these variables you set username and password &ndash; so choose a strong password!</li>
+<li>The <code>SHOP_ERR_EMAIL_*</code> variables refer to the error reporting of the server. When an error occurs, a mail is sent using your email address. You need to provide address, password, SMTP host and port so that the server can relay this to the email server. An error is sent to <em>two</em> email addresses, which you also specify.</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-startup-script">The startup script</h3>
+<p>The script at <code>run/run.sh</code> looks like this:</p>
+<pre><code>#!/bin/bash
+cd /mnt/go/src/github.com/kunterbunt/calendarium-server
+if git rev-parse --git-dir &gt; /dev/null 2&gt;&amp;1; then
+  echo -n &quot;Git repo exists -&gt; updating -&gt; &quot;; git pull
+else
+  echo -n &quot;Git repo doesn't exist -&gt; cloning -&gt; &quot;; git clone https://github.com/kunterbunt/calendarium-shop.git .
+fi
+go build -o calendarium-server . 
+./calendarium-server /mnt/db/calendarium.sqlite3 $BILLBEE_API_KEY $BILLBEE_API_USERNAME $BILLBEE_API_PASSWORD $BILLBEE_API_URL $SHOP_AUTH_USERNAME $SHOP_AUTH_PASSWORD $SHOP_FORWARD_TO_BILLBEE $SHOP_ERR_EMAIL_FROM $SHOP_ERR_EMAIL_TO_FIRST $SHOP_ERR_EMAIL_TO_SECOND $SHOP_ERR_EMAIL_PASSWORD $SHOP_ERR_EMAIL_SMTP_HOST $SHOP_ERR_EMAIL_SMTP_PORT
+</code></pre><p>Remember, it is executed <em>inside</em> the Docker container.</p>
+<ul>
+<li>It&rsquo;ll check whether a Git repo exists, and update the code if so; otherwise it&rsquo;ll <code>clone</code> the code from GitHub.</li>
+<li>Then it&rsquo;ll <code>build</code> the code into a binary called <code>calendarium-server</code>
+<ul>
+<li>since the image bases off of the Golang Docker image, <code>go</code> is available.</li>
+</ul>
+</li>
+<li>Then it&rsquo;ll execute this binary using a number of parameters
+<ul>
+<li>These are all set through the environment variables that we&rsquo;ve specified in the <code>docker-compose.yml</code></li>
+<li>So you needn&rsquo;t change anything in this script.</li>
+</ul>
+</li>
+</ul>
+<h3 id="the-website">The website</h3>
+<p>The REST API does <em>not</em> expose any ports to the outside, so how would it be reachable?
+Also, how do we deliver the website content to our customers?</p>
+<p>The second service specified in the <code>docker-compose.yml</code> is a container based off the <code>nginx</code> image.
+This guy is reachable at port <code>80</code>, and we modify the default <code>nginx</code> by providing our own <code>config/</code> directory, which we mount into the container.</p>
+<p>The configuration is all-default except for the <code>nginx/config/conf.d/sites-available/cc-server.conf</code> file:</p>
+<pre><code>server {
+    listen 80;
+    listen [::]:80;
+    server_name localhost;
+
+    location ^~ / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;	
+    }
+
+    location ^~ /api/ {
+	proxy_pass http://calendarium-shop:8000;
+    }
+}
+</code></pre><p>These few lines tell <code>nginx</code> to:</p>
+<ul>
+<li>serve HTML for all requests</li>
+<li>except for those that target anything at <code>/api/*</code>
+<ul>
+<li>these are instead passed to the <code>calendarium-shop</code> Docker container at port <code>8000</code> (where the REST API server expects requests by default)</li>
+</ul>
+</li>
+</ul>
+<p>Last thing missing is the website HTML.
+Clone the <a href="https://github.com/kunterbunt/website-calendarium-culinarium">repo</a> and adapt the <code>/path/to/website-repo/</code> line in the <code>docker-compose.yml</code> to point to the correct directory.
+This is mounted into the <code>nginx</code> Docker container into its default HTML directory at <code>/usr/share/nginx/html</code>.</p>
+<h1 id="in-a-nutshell">In a nutshell</h1>
+<p>To summarize: two containers are spun-up:</p>
+<ol>
+<li>An <code>nginx</code> container that usually delivers the website HTML, and forwards REST API requests to the local <code>REST API</code> container.</li>
+<li>The <code>REST API</code> container.</li>
+</ol>
+<p>If you follow the above steps, you can recreate the webshop for your own use.
+Feel free to adapt things to your needs, and <a href="mailto:sebastian@nomadblog.de">shoot me a message</a> if something is not clear, or if you would like to work together on improvements!</p>
+<h2 id="try-it">Try it!</h2>
+<p>Start the containers, and visit <code>localhost</code> in a browser.
+You should see the website.</p>
+<p>Also, visit <code>localhost/api/products</code>, which should show the <code>JSON</code>-formatted products (just one, the calendar).
+Visit <code>localhost/api/orders</code> to see all placed orders (protected through basic auth, you set the username and password in the <code>docker-compose.yml</code>).</p>
+<p>Or if you&rsquo;re console-inclined, issue <code>curl localhost:80/api/products</code> to get the products.</p>
+
+            </div>
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </article>
+        <hr/>
+<div class="mdl-grid mdl-grid--no-spacing">    
+    <div class="mdl-cell mdl-cell--12-col">
+        <h4 class="text--centered">Comments</h4>
+    </div>    
+</div>
+<div class="mdl-grid">    
+    <div class="mdl-layout-spacer"></div>
+    <div class="mdl-cell mdl-cell--5-col">
+        <section id="isso-thread"></section>
+    </div>
+    <div class="mdl-layout-spacer"></div>
+</div>
+        <footer class="mdl-mini-footer">
+  <div class="mdl-mini-footer__left-section">
+    <div class="mdl-logo">Contact</div>
+    <ul class="mdl-mini-footer__link-list">
+      <li><a href="mailto:sebastian@nomadblog.de" title="Send me a mail!" target="_self" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"><i class="material-icons">email</i></a></li>
+    </ul>
+  </div>
+</footer>
+
+      </div>
+    </main>
+  </div>
+</body>
+
+

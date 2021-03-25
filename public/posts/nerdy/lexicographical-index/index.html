@@ -53,13 +53,10 @@
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
               <p>Building upon the idea of <a href="/posts/nerdy/word-frequency-vectors/">word frequency vectors</a>, when implementing the idea in a language of your choice, you might encounter the problem of instantiating a container that is going to store the observed frequencies. In an efficient implementation you could instantiate such a container that holds the right number of items, which is \(\left| \sum_{language} \right| ^n\), e.g. for DNA the alphabet is \(\sum_{DNA}=\{A,C,T,G\}\). \(n\) is the word length for which you&rsquo;re finding the frequency vector.</p>
-
 <p>So, in <code>C++</code>, the container could look like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">mFrequencyVector</span><span class="p">(</span><span class="n">getDimension</span><span class="p">(),</span> <span class="mi">0UL</span><span class="p">);</span>
-</code></pre></div>
-<p><code>mFrequencyVector</code> holds one counter each for every word of length <code>n</code>, and you can easily assume it holds these elements in lexicographical order.
+</code></pre></div><p><code>mFrequencyVector</code> holds one counter each for every word of length <code>n</code>, and you can easily assume it holds these elements in lexicographical order.
 Now you&rsquo;re counting the occurrences of the words and want to update the respective counter in <code>mFrequencyVector</code>, but which one is it?  For <code>n=2</code> you&rsquo;ll find:</p>
-
 <pre><code>0 AA
 1 AC
 2 AG
@@ -71,31 +68,24 @@ Now you&rsquo;re counting the occurrences of the words and want to update the re
 8 GA
 ...
 15  TT
-</code></pre>
-
-<p>Consider your <code>alphabet</code> a vector <code>['A', 'C', 'G', 'T']</code>. Each contained character has an index corresponding to <code>[0, 1, 2, 3]</code>.
+</code></pre><p>Consider your <code>alphabet</code> a vector <code>['A', 'C', 'G', 'T']</code>. Each contained character has an index corresponding to <code>[0, 1, 2, 3]</code>.
 For arbitrary <code>n</code> you can compute the index of a <code>word</code> as</p>
-
-<p>$$ \left| \sum \right| ^{n-1} \cdot index(word.at(0)) + \left| \sum \right| ^{n-2} \cdot index(word.at(1))\; + $$
+<p>$$ \left| \sum \right| ^{n-1} \cdot index(word.at(0)) + \left| \sum \right| ^{n-2} \cdot index(word.at(1)); + $$
 $$ \ldots + \left| \sum \right| ^{0} \cdot index(word.at(n-1)) $$</p>
-
 <p>For example, <code>ACT</code> has the index</p>
-
 <pre><code>4^2 * Index(A) + 4^1 * Index(C) + 4^0 * Index(T)
 &lt;=&gt;
 16 * 0 + 4 * 1 + 1 * 3 = 7
-</code></pre>
-
-<p>A full implementation of a <code>word frequency vector class</code> in <code>C++</code> is this:</p>
+</code></pre><p>A full implementation of a <code>word frequency vector class</code> in <code>C++</code> is this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-c++" data-lang="c++"><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp">
 </span><span class="cp">#include</span> <span class="cpf">&lt;exception&gt;</span><span class="cp">
 </span><span class="cp"></span>
-<span class="k">class</span><span class="err"> </span><span class="nc">WordFrequencyVector</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">WordFrequencyVector</span> <span class="p">{</span>
   <span class="k">public</span><span class="o">:</span>
     <span class="k">static</span> <span class="n">WordFrequencyVector</span> <span class="n">get</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">wordLength</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;&amp;</span> <span class="n">alphabet</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">WordFrequencyVector</span> <span class="n">vec</span><span class="p">(</span><span class="n">wordLength</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">);</span>
+      <span class="n">WordFrequencyVector</span> <span class="nf">vec</span><span class="p">(</span><span class="n">wordLength</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">);</span>
       <span class="n">string</span> <span class="n">copy</span> <span class="o">=</span> <span class="n">message</span><span class="p">;</span>
       <span class="n">std</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">copy</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">copy</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">copy</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="o">::</span><span class="n">toupper</span><span class="p">);</span>
 
@@ -103,19 +93,19 @@ $$ \ldots + \left| \sum \right| ^{0} \cdot index(word.at(n-1)) $$</p>
       <span class="k">return</span> <span class="n">vec</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">at</span><span class="p">(</span><span class="k">const</span> <span class="n">size_t</span><span class="o">&amp;</span> <span class="n">position</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">at</span><span class="p">(</span><span class="k">const</span> <span class="n">size_t</span><span class="o">&amp;</span> <span class="n">position</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
       <span class="k">return</span> <span class="n">mFrequencyVector</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">at</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">word</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">at</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">word</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
       <span class="k">return</span> <span class="n">mFrequencyVector</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">getIndex</span><span class="p">(</span><span class="n">word</span><span class="p">));</span>
     <span class="p">}</span>
 
-    <span class="n">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="n">size_t</span> <span class="nf">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
       <span class="k">return</span> <span class="n">mFrequencyVector</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="kt">double</span> <span class="n">getDistance</span><span class="p">(</span><span class="k">const</span> <span class="n">WordFrequencyVector</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="kt">double</span> <span class="nf">getDistance</span><span class="p">(</span><span class="k">const</span> <span class="n">WordFrequencyVector</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
       <span class="k">return</span> <span class="n">WordFrequencyVector</span><span class="o">::</span><span class="n">euclideanDistance</span><span class="p">(</span><span class="n">mFrequencyVector</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">mFrequencyVector</span><span class="p">);</span>
     <span class="p">}</span>
 
@@ -124,11 +114,11 @@ $$ \ldots + \left| \sum \right| ^{0} \cdot index(word.at(n-1)) $$</p>
 </span><span class="cm">     * @param v2
 </span><span class="cm">     * @return The euclidean distance between v1 and v2.
 </span><span class="cm">     */</span>
-    <span class="k">static</span> <span class="kt">double</span> <span class="n">euclideanDistance</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">v1</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">v2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">static</span> <span class="kt">double</span> <span class="nf">euclideanDistance</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">v1</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="o">&gt;</span> <span class="n">v2</span><span class="p">)</span> <span class="p">{</span>
       <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">min</span><span class="p">(</span><span class="n">v1</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">v2</span><span class="p">.</span><span class="n">size</span><span class="p">());</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
         <span class="n">sum</span> <span class="o">+=</span> <span class="n">pow</span><span class="p">(((</span><span class="kt">double</span><span class="p">)</span> <span class="n">v1</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="o">-</span> <span class="p">((</span><span class="kt">double</span><span class="p">)</span> <span class="n">v2</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span> <span class="mi">2</span><span class="p">);</span>
-      <span class="k">return</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">sum</span><span class="p">);</span>
     <span class="p">}</span>
 
   <span class="k">protected</span><span class="o">:</span>
@@ -137,7 +127,7 @@ $$ \ldots + \left| \sum \right| ^{0} \cdot index(word.at(n-1)) $$</p>
       <span class="c1">// Init-list does all the work.
 </span><span class="c1"></span>    <span class="p">}</span>
 
-    <span class="kt">void</span> <span class="n">find</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="nf">find</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">message</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">+</span> <span class="p">(</span><span class="n">mWordLength</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">message</span><span class="p">.</span><span class="n">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">word</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">mWordLength</span><span class="p">);</span>
         <span class="n">mFrequencyVector</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="n">getIndex</span><span class="p">(</span><span class="n">word</span><span class="p">))</span><span class="o">++</span><span class="p">;</span>

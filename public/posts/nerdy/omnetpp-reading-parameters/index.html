@@ -49,9 +49,7 @@
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
               <p>I had a hard time figuring out how to access general simulation parameters such as the maximum simulation time <code>max-sim-time</code> at runtime from whatever module needs it.</p>
-
 <p>For <code>modules</code> it is rather straightforward. From any <code>cModule</code> object, there&rsquo;s a <code>par(const char* parname)</code> function. Say you&rsquo;re writing a module named <code>OmniscientEntity</code> (as I did), and it is defined in <strong><code>OmniscientEntity.ned</code></strong> as this:</p>
-
 <pre><code>simple OmniscientEntity {            	    
     parameters:
         // Used for CQI computation. Copy over from your channel.xml.
@@ -68,33 +66,18 @@
     @display(&quot;i=block/table&quot;);
     @class(OmniscientEntity);    
 }
-</code></pre>
-
-<p>then to access its parameter <code>targetBler</code>, just call <code>par(&quot;targetBler&quot;)</code> on its object and that&rsquo;s it. You can traverse the module hierarchy using <code>getParentModule()</code>, or get to the top via <code>getSystemModule()</code>.</p>
-
+</code></pre><p>then to access its parameter <code>targetBler</code>, just call <code>par(&quot;targetBler&quot;)</code> on its object and that&rsquo;s it. You can traverse the module hierarchy using <code>getParentModule()</code>, or get to the top via <code>getSystemModule()</code>.</p>
 <p>This won&rsquo;t work with general parameters set in your <code>omnetpp.ini</code>, though, because they&rsquo;re not part of your module. I had thought that you would be able to access them via</p>
-
 <pre><code>getSystemModule()-&gt;par(...) // doesn't work
-</code></pre>
-
-<p>but apparently that <em>also</em> doesn&rsquo;t work. Go figure.<br />
+</code></pre><p>but apparently that <em>also</em> doesn&rsquo;t work. Go figure.<br>
 After some significant tinkering, I finally found in the documentation that you can get access to the configuration via the globally available <code>getEnvir()-&gt;getConfig()</code>. From there you have functions that get you what you want, such as</p>
-
 <pre><code>getAsDouble(cConfigOption *option, double fallbackValue=0)
-</code></pre>
-
-<p>Cool, but what&rsquo;s a <code>cConfigOption</code>? It has a big, nasty constructor:</p>
-
+</code></pre><p>Cool, but what&rsquo;s a <code>cConfigOption</code>? It has a big, nasty constructor:</p>
 <pre><code>cConfigOption(const char* name, bool isGlobal, Type type, const char* unit, const char* defaultValue, const char* description)
-</code></pre>
-
-<p>Learning by example is easiest, so to finally find the <code>sim-time-limit</code> you&rsquo;re looking for, do this:</p>
-
+</code></pre><p>Learning by example is easiest, so to finally find the <code>sim-time-limit</code> you&rsquo;re looking for, do this:</p>
 <pre><code>cConfigOption simTimeConfig(&quot;sim-time-limit&quot;, true, cConfigOption::Type::CFG_DOUBLE, &quot;s&quot;, &quot;300&quot;, &quot;&quot;);
 double maxSimTime = getEnvir()-&gt;getConfig()-&gt;getAsDouble(&amp;simTimeConfig);
-</code></pre>
-
-<p>and adjust as you need for other parameters. Talk about easy.</p>
+</code></pre><p>and adjust as you need for other parameters. Talk about easy.</p>
 
             </div>
             <div class="mdl-layout-spacer"></div>

@@ -48,20 +48,15 @@
           <div class="mdl-grid mdl-grid">
             <div class="mdl-layout-spacer"></div>
             <div class="content mdl-cell mdl-cell--5-col">
-              <p>I had an annoying problem: for the simulator I use for research I needed a specific library, as the simulator uses it.<br />
+              <p>I had an annoying problem: for the simulator I use for research I needed a specific library, as the simulator uses it.<br>
 This specific library <code>osgearth</code> is available in the Arch Linux&rsquo;s AUR, but the package maintainer put a wrong <code>MD5 Checksum</code> into the <code>PKGBUILD</code>. Let&rsquo;s say we trust the maintainer and don&rsquo;t believe someone tinkered with the files. What do you do?</p>
-
 <p>Go to an arbitrary directory</p>
-
 <pre><code>cd ~/Download
 mkdir osgearth
 cd osgearth
-</code></pre>
-
-<p>Download the <code>Snapshot</code> from the AUR which should contain the <code>PKGBUILD</code>; extract it from the archive file.</p>
-
-<p>Execute <code>makepkg -g</code> which downloads the files and computes the <code>MD5 Checksums</code>. Copy the checksum, edit the <code>PKGBUILD</code> and put it in there.<br />
-Now <code>makepkg -sc</code>, where <code>-s</code> installs missing dependencies, and <code>-c</code> cleans up afterwards.<br />
+</code></pre><p>Download the <code>Snapshot</code> from the AUR which should contain the <code>PKGBUILD</code>; extract it from the archive file.</p>
+<p>Execute <code>makepkg -g</code> which downloads the files and computes the <code>MD5 Checksums</code>. Copy the checksum, edit the <code>PKGBUILD</code> and put it in there.<br>
+Now <code>makepkg -sc</code>, where <code>-s</code> installs missing dependencies, and <code>-c</code> cleans up afterwards.<br>
 Install the compiled package with <code>pacman -U &lt;package&gt;</code>.</p>
 
             </div>
